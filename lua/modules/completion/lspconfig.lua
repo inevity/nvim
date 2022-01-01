@@ -49,6 +49,7 @@ local enhance_attach = function(client,bufnr)
   api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
+-- gopls
 lspconfig.gopls.setup {
   cmd = {"gopls","--remote=auto"},
   on_attach = enhance_attach,
@@ -59,6 +60,7 @@ lspconfig.gopls.setup {
   }
 }
 
+-- lua config: Done
 lspconfig.sumneko_lua.setup {
   --cmd = {
   --  global.home.."/workstation/lua-language-server/bin/macOS/lua-language-server",
@@ -82,6 +84,7 @@ lspconfig.sumneko_lua.setup {
   }
 }
 
+-- ts
 lspconfig.tsserver.setup {
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
@@ -89,6 +92,7 @@ lspconfig.tsserver.setup {
   end
 }
 
+-- clangd :Done
 lspconfig.clangd.setup {
   cmd = {
     "clangd",
@@ -98,11 +102,12 @@ lspconfig.clangd.setup {
     "--header-insertion=iwyu",
   },
 }
-
+-- rust analyzer :Done
 lspconfig.rust_analyzer.setup {
   capabilities = capabilities,
 }
 
+-- dockerls, bashls, pyright
 local servers = {
   'dockerls','bashls','pyright'
 }
