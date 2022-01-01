@@ -26,7 +26,7 @@ local function load_dbs()
   end
   return dbs
 end
-
+-- DB_CONNECTION_db_name=value.
 function config.vim_dadbod_ui()
   if packer_plugins['vim-dadbod'] and not packer_plugins['vim-dadbod'].loaded then
     vim.cmd [[packadd vim-dadbod]]
@@ -35,7 +35,9 @@ function config.vim_dadbod_ui()
   vim.g.db_ui_win_position = 'left'
   vim.g.db_ui_use_nerd_fonts = 1
   vim.g.db_ui_winwidth = 35
-  vim.g.db_ui_save_location = os.getenv("HOME") .. '/.cache/vim/db_ui_queries'
+-- why get nil value?
+--   vim.g.db_ui_save_location = os.getenv("HOME") .. '/.cache/vim/db_ui_queries'
+  vim.g.db_ui_save_location = '/root/.cache/vim/db_ui_queries'
   vim.g.dbs = load_dbs()
 end
 
