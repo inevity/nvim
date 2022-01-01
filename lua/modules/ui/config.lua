@@ -50,20 +50,15 @@ function config.dashboard()
 end
 
 function config.nvim_tree()
-  -- On Ready Event for Lazy Loading work
-  require("nvim-tree.events").on_nvim_tree_ready(
-    function()
-      vim.cmd("NvimTreeRefresh")
-    end
-  )
-  vim.g.nvim_tree_follow = 1
-  vim.g.nvim_tree_hide_dotfiles = 1
-  vim.g.nvim_tree_indent_markers = 1
-  vim.g.nvim_tree_bindings = {
-    ["l"] = ":lua require'nvim-tree'.on_keypress('edit')<CR>",
-    ["s"] = ":lua require'nvim-tree'.on_keypress('vsplit')<CR>",
-    ["i"] = ":lua require'nvim-tree'.on_keypress('split')<CR>",
-  }
+--   vim.g.nvim_tree_follow = 1
+--   vim.g.nvim_tree_hide_dotfiles = 1
+--   TODO: fix
+--   vim.g.nvim_tree_indent_markers = 1
+--   vim.g.nvim_tree_bindings = {
+--     ["l"] = ":lua require'nvim-tree'.on_keypress('edit')<CR>",
+--     ["s"] = ":lua require'nvim-tree'.on_keypress('vsplit')<CR>",
+--     ["i"] = ":lua require'nvim-tree'.on_keypress('split')<CR>",
+--   }
   vim.g.nvim_tree_icons = {
     default =  '',
     symlink =  '',
@@ -75,6 +70,42 @@ function config.nvim_tree()
      untracked = "★",
     },
   }
+  require('nvim-tree').setup {
+--     update_focused_file = {
+--       -- false
+--       enable      = true,
+--       update_cwd  = false,
+--       ignore_list = {}
+--     },
+-- --    filters = { dotfiles = false }
+-- --     view.mappings.list
+     view = {
+       width = 30,
+       height = 30,
+       hide_root_folder = false,
+       side = 'left',
+       --true
+       auto_resize = true,
+       mappings = {
+         custom_only = false,
+         list = {
+                 ["l"] = ":lua require'nvim-tree'.on_keypress('edit')<CR>",
+                 ["s"] = ":lua require'nvim-tree'.on_keypress('vsplit')<CR>",
+                 ["i"] = ":lua require'nvim-tree'.on_keypress('split')<CR>",
+               }
+       },
+       number = false,
+       relativenumber = false,
+       signcolumn = "yes"
+     },
+  }
+
+  -- On Ready Event for Lazy Loading work
+  require("nvim-tree.events").on_nvim_tree_ready(
+    function()
+      vim.cmd("NvimTreeRefresh")
+    end
+  )
 end
 
 function config.gitsigns()
