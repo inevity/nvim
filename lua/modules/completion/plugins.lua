@@ -11,16 +11,63 @@ completion['tami5/lspsaga.nvim'] = {
   branch = 'nvim6.0',
   cmd = 'Lspsaga',
 }
-
-completion['hrsh7th/nvim-compe'] = {
-  event = 'InsertEnter',
-  config = conf.nvim_compe,
+-- Plug 'hrsh7th/cmp-nvim-lsp'
+completion['hrsh7th/cmp-nvim-lsp'] = {
 }
 
+-- Plug 'hrsh7th/cmp-buffer'
+-- Plug 'hrsh7th/cmp-path'
+-- Plug 'hrsh7th/cmp-cmdline'
+completion['hrsh7th/cmp-buffer'] = {
+}
+completion['hrsh7th/cmp-path'] = {
+}
+completion['hrsh7th/cmp-cmdline'] = {
+}
+
+
+completion['hrsh7th/nvim-cmp'] = {
+  event = 'InsertEnter',
+  config = conf.nvim_cmp,
+}
+-- completion['hrsh7th/nvim-compe'] = {
+--   event = 'InsertEnter',
+--   config = conf.nvim_compe,
+-- }
+
+
+-- " For vsnip users.
+-- Plug 'hrsh7th/cmp-vsnip'
+-- Plug 'hrsh7th/vim-vsnip'
+--
+completion['hrsh7th/cmp-vsnip'] = {
+--  event = 'InsertCharPre',
+--  config = conf.vim_vsnip
+}
 completion['hrsh7th/vim-vsnip'] = {
   event = 'InsertCharPre',
   config = conf.vim_vsnip
 }
+
+
+-- " For luasnip users.
+-- " Plug 'L3MON4D3/LuaSnip'
+-- " Plug 'saadparwaiz1/cmp_luasnip'
+-- 
+-- " For ultisnips users.
+-- " Plug 'SirVer/ultisnips'
+-- " Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+-- 
+-- " For snippy users.
+-- " Plug 'dcampos/nvim-snippy'
+-- " Plug 'dcampos/cmp-snippy'
+
+
+-- Adds extra functionality over rust analyzer
+-- Plug 'simrat39/rust-tools.nvim'
+completion['simrat39/rust-tools.nvim'] = {
+}
+
 
 completion['nvim-telescope/telescope.nvim'] = {
   cmd = 'Telescope',

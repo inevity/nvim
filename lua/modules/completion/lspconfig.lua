@@ -53,6 +53,12 @@ local enhance_attach = function(client,bufnr)
   api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 end
 
+
+--   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+--   require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+--     capabilities = capabilities
+--   }
+
 -- gopls
 lspconfig.gopls.setup {
   cmd = {"gopls","--remote=auto"},
