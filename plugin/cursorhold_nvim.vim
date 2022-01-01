@@ -2,6 +2,11 @@ let g:cursorhold_updatetime = get(g:, 'cursorhold_updatetime', &updatetime)
 let g:fix_cursorhold_nvim_timer = -1
 set eventignore+=CursorHold,CursorHoldI
 
+" TODO
+" Show diagnostic popup on cursor hover
+" autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+" https://github.com/sharksforarms/neovim-rust/blob/master/neovim-init-lsp-cmp-rust-tools.vim
+
 augroup fix_cursorhold_nvim
   autocmd!
   autocmd CursorMoved * call CursorHoldTimer()

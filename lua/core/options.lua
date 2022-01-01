@@ -43,7 +43,10 @@ local function load_options()
     ttimeout       = true;
     timeoutlen     = 500;
     ttimeoutlen    = 10;
+    -- Set updatetime for CursorHold
+    -- 300ms of no cursor movement to trigger CursorHold
     updatetime     = 100;
+
     redrawtime     = 1500;
     ignorecase     = true;
     smartcase      = true;
