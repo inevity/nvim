@@ -6,7 +6,9 @@ completion['neovim/nvim-lspconfig'] = {
   config = conf.nvim_lsp,
 }
 
-completion['glepnir/lspsaga.nvim'] = {
+completion['tami5/lspsaga.nvim'] = {
+--  branch = 'main',
+  branch = 'nvim6.0',
   cmd = 'Lspsaga',
 }
 

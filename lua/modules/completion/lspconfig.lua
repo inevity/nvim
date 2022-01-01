@@ -11,7 +11,9 @@ end
 
 local saga = require 'lspsaga'
 saga.init_lsp_saga({
-  code_action_icon = '💡'
+  debug = true,
+  code_action_icon = '💡',
+  max_preview_lines = 20,
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
