@@ -59,6 +59,8 @@ function config.nvim_cmp()
       -- { name = 'snippy' }, -- For snippy users.
     }, {
       { name = 'buffer' },
+      { name = 'path' },
+
     })
   })
      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
