@@ -97,6 +97,9 @@ local plug_map = {
     ["x|I"]              = map_cmd("v:lua.enhance_nice_block('I')"):with_expr(),
     ["x|gI"]             = map_cmd("v:lua.enhance_nice_block('gI')"):with_expr(),
     ["x|A"]              = map_cmd("v:lua.enhance_nice_block('A')"):with_expr(),
+    -- nvim cmp mapping
+    --  ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    --  ["n|<C-b>"]     = map_cmd("<cmd> lua require''.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }))::with_noremap():with_silent(),,
 };
 
 bind.nvim_load_mapping(plug_map)
