@@ -3,6 +3,8 @@ local lspconfig = require 'lspconfig'
 -- local global = require 'core.global'
 local format = require('modules.completion.format')
 
+vim.lsp.set_log_level("debug")
+
 if not packer_plugins['lspsaga.nvim'].loaded then
   vim.cmd [[packadd lspsaga.nvim]]
 end
