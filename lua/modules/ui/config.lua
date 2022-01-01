@@ -1,7 +1,12 @@
 local config = {}
 
 function config.galaxyline()
-  require('modules.ui.eviline')
+-- require('modules.ui.eviline')
+--  require("galaxyline.themes.eviline")
+--  require("galaxyline.themes.colors")
+--  require("galaxyline.themes.neonline")
+  require("galaxyline.themes.spaceline")
+
 end
 
 function config.nvim_bufferline()
