@@ -29,6 +29,7 @@ function config.dashboard()
   vim.g.dashboard_preview_file = home .. '/.config/nvim/static/neovim.cat'
   vim.g.dashboard_preview_file_height = 12
   vim.g.dashboard_preview_file_width = 80
+  -- dashborad config here
   vim.g.dashboard_default_executive = 'telescope'
   vim.g.dashboard_custom_section = {
     last_session = {

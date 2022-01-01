@@ -1,10 +1,12 @@
 local ui = {}
 local conf = require('modules.ui.config')
 
+--ui['kingedward35/zephyr-nvim'] = {
 ui['glepnir/zephyr-nvim'] = {
+ -- branch = 'main',
   config = [[vim.cmd('colorscheme zephyr')]]
 }
-
+-- SrWither/dashboard-nvim
 ui['glepnir/dashboard-nvim'] = {
   config = conf.dashboard
 }
