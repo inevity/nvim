@@ -37,9 +37,17 @@ function Packer:load_packer()
   end
   packer.init({
     compile_path = packer_compiled,
-    git = { clone_timeout = 120 },
+    max_jobs = 16,
+    git = { 
+		clone_timeout = 120,
+		-- trace
+		log = { level = 'debug' },
+                default_url_format = 'https://hub.fastgit.org/%s'
+
+    },
     disable_commands = true
   })
+
   packer.reset()
   local use = packer.use
   self:load_plugins()
