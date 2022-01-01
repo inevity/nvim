@@ -54,4 +54,9 @@ function config.vim_vista()
   }
 end
 
+function config.which_key()
+  require('which-key').setup {
+  }
+end
+
 return config
