@@ -13,16 +13,20 @@ completion['tami5/lspsaga.nvim'] = {
 }
 -- Plug 'hrsh7th/cmp-nvim-lsp'
 completion['hrsh7th/cmp-nvim-lsp'] = {
+  opt = true,
 }
 
 -- Plug 'hrsh7th/cmp-buffer'
 -- Plug 'hrsh7th/cmp-path'
 -- Plug 'hrsh7th/cmp-cmdline'
 completion['hrsh7th/cmp-buffer'] = {
+  opt = true,
 }
 completion['hrsh7th/cmp-path'] = {
+  opt = true,
 }
 completion['hrsh7th/cmp-cmdline'] = {
+  opt = true,
 }
 
 
@@ -40,7 +44,9 @@ completion['hrsh7th/nvim-cmp'] = {
 -- Plug 'hrsh7th/cmp-vsnip'
 -- Plug 'hrsh7th/vim-vsnip'
 --
+-- start/cmp-vsnip depend cmp
 completion['hrsh7th/cmp-vsnip'] = {
+  opt = true,
 --  event = 'InsertCharPre',
 --  config = conf.vim_vsnip
 }
@@ -66,6 +72,8 @@ completion['hrsh7th/vim-vsnip'] = {
 -- Adds extra functionality over rust analyzer
 -- Plug 'simrat39/rust-tools.nvim'
 completion['simrat39/rust-tools.nvim'] = {
+  opt = true,
+--   ft = 'rust',
 }
 
 

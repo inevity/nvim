@@ -16,6 +16,10 @@ saga.init_lsp_saga({
   max_preview_lines = 20,
 })
 
+if not packer_plugins['cmp-nvim-lsp'].loaded then
+  vim.cmd [[packadd cmp-nvim-lsp]]
+end
+
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -159,6 +163,10 @@ local opts = {
         }
     },
 }
+
+if not packer_plugins['rust-tools.nvim'].loaded then
+  vim.cmd [[packadd rust-tools.nvim]]
+end
 
 require('rust-tools').setup(opts)
 
