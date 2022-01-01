@@ -184,6 +184,7 @@ function config.indent_blakline()
     "for"
   }
   -- because lazy load indent-blankline so need readd this autocmd
+  -- first comment,if installed ,then enable.
   vim.cmd('autocmd CursorMoved * IndentBlanklineRefresh')
 end
 
