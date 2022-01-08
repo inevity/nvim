@@ -11,7 +11,7 @@ tools['editorconfig/editorconfig-vim'] = {
   ft = { 'go','typescript','javascript','vim','rust','zig','c','cpp' }
 }
 
-tools['glepnir/prodoc.nvim'] = {
+tools['inevity/prodoc.nvim'] = {
   event = 'BufReadPre'
 }
 
