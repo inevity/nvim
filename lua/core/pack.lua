@@ -42,7 +42,7 @@ function Packer:load_packer()
 		clone_timeout = 120,
 		-- trace
 		log = { level = 'debug' },
-                default_url_format = 'https://hub.fastgit.org/%s'
+                -- default_url_format = 'https://hub.fastgit.org/%s'
 
     },
     disable_commands = true

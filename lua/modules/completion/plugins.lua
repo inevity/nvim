@@ -32,6 +32,7 @@ completion['hrsh7th/cmp-cmdline'] = {
 
 completion['hrsh7th/nvim-cmp'] = {
   event = 'InsertEnter',
+  --event = 'TextChanged',
   config = conf.nvim_cmp,
 }
 -- completion['hrsh7th/nvim-compe'] = {

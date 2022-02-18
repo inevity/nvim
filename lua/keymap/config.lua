@@ -7,21 +7,32 @@ local function check_back_space()
     end
 end
 
+
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+-- when call ,do what?
+-- compe to cmp ,no long use native pop menu,use float windows 
 --- move to prev/next item in completion menuone
 --- jump to prev/next snippet's placeholder
 _G.tab_complete = function()
+-- pop menu
   if vim.fn.pumvisible() == 1 then
     return t "<C-n>"
+-- same as fn , call vim script
   elseif vim.fn.call("vsnip#available", {1}) == 1 then
     return t "<Plug>(vsnip-expand-or-jump)"
   elseif check_back_space() then
     return t "<Tab>"
   else
-    return vim.fn['compe#complete']()
+--     TODO: how do complete
+--     return vim.fn['compe#complete']()
+--     or use vim.api.
+--     return vim.fn['cmp#complete']()
+--     just return true
+    -- return  require('cmp').complete()
+    return t "<C-Space>"
   end
 end
 

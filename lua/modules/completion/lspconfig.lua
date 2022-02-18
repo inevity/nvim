@@ -41,6 +41,16 @@ end
 
 vim.cmd('command! -nargs=0 LspLog call v:lua.open_lsp_log()')
 vim.cmd('command! -nargs=0 LspRestart call v:lua.reload_lsp()')
+-- " Set updatetime for CursorHold
+-- " 300ms of no cursor movement to trigger CursorHold
+-- set updatetime=300
+-- "" Show diagnostic popup on cursor hover
+-- "autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+-- " Show diagnostic hover after 'updatetime' and don't steal focus
+-- autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})
+-- vim.cmd('autocmd CursorHold * lua vim.diagnostic.show_line_diagnostics({focusable = false})')
+-- Maybe here
+-- vim.cmd('autocmd CursorHold * lua vim.diagnostic.open_float(nil, {focusable = false, source = 'always'})')
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
