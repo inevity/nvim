@@ -38,4 +38,33 @@ tools['folke/which-key.nvim'] = {
   config = conf.which_key
 }
 
+-- tools['jbyuki/one-small-step-for-vimkind'] = {
+-- }
+--
+
+tools['mfussenegger/nvim-dap'] = {
+  ft = 'lua',
+  config = conf.nvim_dap,
+ -- How lazy load option? 
+ -- becasue have not config ,if need require, will installed 
+--  requires = {{'jbyuki/one-small-step-for-vimkind',opt = true}}
+  requires = {{'jbyuki/one-small-step-for-vimkind'}}
+}
+
+tools['rcarriga/nvim-dap-ui'] = {
+  requires = "nvim-dap",
+  after = "nvim-dap",
+  config = function()
+  	require("dapui").setup()
+  end,
+}
+
+-- tools[simrat39/rust-tools.nvim'] = {
+--   after = "nvim-dap",
+--   requires = { "mfussenegger/nvim-dap" },
+--   config = function()
+--   	require("rust-tools").setup({})
+--   end,
+-- }    
+
 return tools
