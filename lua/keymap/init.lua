@@ -104,6 +104,23 @@ local plug_map = {
     -- nvim cmp mapping
     --  ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     --  ["n|<C-b>"]     = map_cmd("<cmd> lua require''.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }))::with_noremap():with_silent(),,
+
+
+--     vim.api.nvim_set_keymap('n', '<F5>', '<Cmd>lua require("dap").continue()<CR>', opts)
+    ["n|<F5>"]           = map_cmd("<cmd> lua require('dap').continue()<CR>"):with_noremap():with_silent(),
+    -- "''" must this styep
+-- --     vim.api.nvim_set_keymap('n', '<F10>', '<Cmd>lua require("dap").step_over()<CR>', opts)
+    ["n|<F10>"]           = map_cmd("<cmd> lua require('dap').step_over()<CR>"):with_noremap():with_silent(),
+-- --     vim.api.nvim_set_keymap('n', '<F11>', '<Cmd>lua require("dap").step_into()<CR>', opts)
+    ["n|<F11>"]           = map_cmd("<cmd> lua require('dap').step_into()<CR>"):with_noremap():with_silent(),
+-- --     vim.api.nvim_set_keymap('n', '<F12>', '<Cmd>lua require("dap").step_out()<CR>', opts)
+    ["n|<F12>"]           = map_cmd("<cmd> lua require('dap').setp_out()<CR>"):with_noremap():with_silent(),
+-- --     vim.api.nvim_set_keymap('n', '<leader>b', '<Cmd>lua require("dap").toggle_breakpoint()<CR>', opts)
+    ["n|<leader>b"]           = map_cmd("<cmd> lua require('dap').toggle_breakpoint()<CR>"):with_noremap():with_silent(),
+-- --     vim.api.nvim_set_keymap('n', '<leader>dr', '<Cmd>lua require("dap").repl.open()<CR>', opts)
+    ["n|<leader>dr"]           = map_cmd("<cmd> lua require('dap').repl.open()<CR>"):with_noremap():with_silent(),
+-- --     vim.api.nvim_set_keymap('n', '<leader>di', '<Cmd>lua require("dapui").toggle()<CR>', opts)
+    ["n|<leader>di"]           = map_cmd("<cmd> lua require('dapui').toggle()<CR>"):with_noremap():with_silent(),
 };
 
 bind.nvim_load_mapping(plug_map)
