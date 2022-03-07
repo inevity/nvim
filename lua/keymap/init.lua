@@ -23,24 +23,43 @@ local plug_map = {
     ["n|<leader>li"]     = map_cr("LspInfo"):with_noremap():with_silent():with_nowait(),
     ["n|<leader>ll"]     = map_cr("LspLog"):with_noremap():with_silent():with_nowait(),
     ["n|<leader>lr"]     = map_cr("LspRestart"):with_noremap():with_silent():with_nowait(),
+
+    -- scroll down hover doc or scroll in definition preview
     ["n|<C-f>"]          = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>"):with_silent():with_noremap():with_nowait(),
+    -- scroll up hover doc or scroll in definition preview
     ["n|<C-b>"]          = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>"):with_silent():with_noremap():with_nowait(),
     ["n|go"]             = map_cr('Lspsaga show_line_diagnostics'):with_noremap():with_silent(),
     ["n|[e"]             = map_cr('Lspsaga diagnostic_jump_next'):with_noremap():with_silent(),
     ["n|]e"]             = map_cr('Lspsaga diagnostic_jump_prev'):with_noremap():with_silent(),
+
+    -- nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
     ["n|K"]              = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
+
+-- code action
+-- nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
+-- vnoremap <silent><leader>ca :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
+
     ["n|ga"]             = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
     ["v|ga"]             = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
+
     ["n|gz"]             = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
+
     ["n|gd"]             = map_cmd("<cmd>lua vim.lsp.buf.definition()<CR>"):with_noremap():with_silent(),
     ["n|gD"]             = map_cmd("<cmd>lua vim.lsp.buf.implementation()<CR>"):with_noremap():with_silent(),
     ["n|gr"]             = map_cmd("<cmd>lua vim.lsp.buf.references()<CR>"):with_noremap():with_silent(),
 --    ["n|gi"]             = map_cmd("<cmd>lua vim.lsp.buf.implementation()<CR>"):with_noremap():with_silent(),
     --  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    --https://github.com/tami5/lspsaga.nvim/wiki
     ["n|gs"]             = map_cr('Lspsaga signature_help'):with_noremap():with_silent(),
     ["n|<leader>gr"]     = map_cr('Lspsaga rename'):with_noremap():with_silent(),
+
+
+    -- lsp provider to find the cursor word definition and reference
+    -- nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
     ["n|gh"]             = map_cr('Lspsaga lsp_finder'):with_noremap():with_silent(),
+
     ["n|gt"]             = map_cmd("<cmd>lua vim.lsp.buf.type_definition()<CR>"):with_noremap():with_silent(),
+
     -- ["n|<Leader>cw"]     = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
     ["n|gw"]             = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
     ["n|<Leader>ce"]     = map_cr('Lspsaga show_line_diagnostics'):with_noremap():with_silent(),
