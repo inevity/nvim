@@ -10,11 +10,61 @@ if not packer_plugins['lspsaga.nvim'].loaded then
 end
 
 local saga = require 'lspsaga'
-saga.init_lsp_saga({
+-- saga.init_lsp_saga({
+--   debug = true,
+--   code_action_icon = '💡',
+--   max_preview_lines = 20,
+-- })
+local lspsaga = require 'lspsaga'
+lspsaga.setup { -- defaults ...
   debug = true,
-  code_action_icon = '💡',
-  max_preview_lines = 20,
-})
+  use_saga_diagnostic_sign = true,
+  -- diagnostic sign
+  error_sign = "",
+  warn_sign = "",
+  hint_sign = "",
+  infor_sign = "",
+  diagnostic_header_icon = "   ",
+  -- code action title icon
+  code_action_icon = " ",
+  code_action_prompt = {
+    enable = true,
+    sign = true,
+    sign_priority = 40,
+    virtual_text = true,
+  },
+  finder_definition_icon = "  ",
+  finder_reference_icon = "  ",
+  max_preview_lines = 10,
+  finder_action_keys = {
+    open = "o",
+    vsplit = "s",
+    split = "i",
+    quit = "q",
+    scroll_down = "<C-f>",
+    scroll_up = "<C-b>",
+  },
+  code_action_keys = {
+    quit = "q",
+    exec = "<CR>",
+  },
+  rename_action_keys = {
+    quit = "<C-c>",
+    exec = "<CR>",
+  },
+  definition_preview_icon = "  ",
+  border_style = "single",
+  rename_prompt_prefix = "➤",
+  rename_output_qflist = {
+    enable = false,
+    auto_open_qflist = false,
+  },
+  server_filetype_map = {},
+  diagnostic_prefix_format = "%d. ",
+  diagnostic_message_format = "%m %c",
+  highlight_prefix = false,
+}
+
 
 if not packer_plugins['cmp-nvim-lsp'].loaded then
   vim.cmd [[packadd cmp-nvim-lsp]]
@@ -100,6 +150,7 @@ lspconfig.sumneko_lua.setup {
   cmd = {
     "lua-language-server"
   };
+  capabilities = capabilities,
   settings = {
     Lua = {
       diagnostics = {
@@ -116,6 +167,7 @@ lspconfig.sumneko_lua.setup {
 
 -- ts
 lspconfig.tsserver.setup {
+  capabilities = capabilities,
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
     enhance_attach(client)
@@ -134,6 +186,7 @@ lspconfig.clangd.setup {
     "--log=verbose",
     "--pretty"
   },
+  capabilities = capabilities,
 }
 -- rust analyzer :Done
 -- lspconfig.rust_analyzer.setup {
@@ -159,6 +212,7 @@ local opts = {
     -- these override the defaults set by rust-tools.nvim
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
     server = {
+        capabilities = capabilities,
         -- on_attach is a callback called when the language server attachs to the buffer
         -- on_attach = on_attach,
         settings = {
@@ -169,6 +223,26 @@ local opts = {
                 checkOnSave = {
                     command = "clippy"
                 },
+
+                assist = {
+                  importGranularity = "module",
+                  importEnforceGranularity = true,
+                },
+                cargo = {
+                  loadOutDirsFromCheck = true,
+                  allFeatures = true,
+                  runBuildScripts = true,
+                },
+                procMacro = {
+                  enable = true,
+                },
+--                 checkOnSave = {
+--                   command = "clippy",
+--                 },
+                experimental = {
+                  procAttrMacros = true,
+                },
+
             }
         }
     },
@@ -187,6 +261,7 @@ local servers = {
 
 for _,server in ipairs(servers) do
   lspconfig[server].setup {
+    capabilities = capabilities,
     on_attach = enhance_attach
   }
 end

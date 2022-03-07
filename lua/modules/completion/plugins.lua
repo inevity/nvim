@@ -1,37 +1,49 @@
 local completion = {}
 local conf = require('modules.completion.config')
 
+-- Plug 'neovim/nvim-lspconfig'
+-- opt true
 completion['neovim/nvim-lspconfig'] = {
+  -- event trigger what?
   event = 'BufReadPre',
   config = conf.nvim_lsp,
 }
 
+-- ?
+-- -- opt true
 completion['tami5/lspsaga.nvim'] = {
 --  branch = 'main',
-  branch = 'nvim6.0',
+ -- branch = 'nvim6.0',
   cmd = 'Lspsaga',
 }
+--
+-- opt true, but who load it?
 -- Plug 'hrsh7th/cmp-nvim-lsp'
 completion['hrsh7th/cmp-nvim-lsp'] = {
-  opt = true,
+ -- opt = true,
 }
 
 -- Plug 'hrsh7th/cmp-buffer'
 -- Plug 'hrsh7th/cmp-path'
 -- Plug 'hrsh7th/cmp-cmdline'
+-- opt true, but who load it?
 completion['hrsh7th/cmp-buffer'] = {
-  opt = true,
+--  opt = true,
 }
+-- opt true, but who load it?
 completion['hrsh7th/cmp-path'] = {
-  opt = true,
+ -- opt = true,
 }
+-- opt true, but who load it?
 completion['hrsh7th/cmp-cmdline'] = {
-  opt = true,
+  -- opt = true,
 }
 
 
+-- opt true
+-- Plug 'hrsh7th/nvim-cmp'
 completion['hrsh7th/nvim-cmp'] = {
-  event = 'InsertEnter',
+  -- event = 'InsertEnter',
   --event = 'TextChanged',
   config = conf.nvim_cmp,
 }
@@ -45,14 +57,16 @@ completion['hrsh7th/nvim-cmp'] = {
 -- Plug 'hrsh7th/cmp-vsnip'
 -- Plug 'hrsh7th/vim-vsnip'
 --
+-- opt true, but who load it?
 -- start/cmp-vsnip depend cmp
 completion['hrsh7th/cmp-vsnip'] = {
-  opt = true,
+--  opt = true,
 --  event = 'InsertCharPre',
 --  config = conf.vim_vsnip
 }
+-- opt true
 completion['hrsh7th/vim-vsnip'] = {
-  event = 'InsertCharPre',
+ -- event = 'InsertCharPre',
   config = conf.vim_vsnip
 }
 
@@ -70,14 +84,16 @@ completion['hrsh7th/vim-vsnip'] = {
 -- " Plug 'dcampos/cmp-snippy'
 
 
+-- opt true
 -- Adds extra functionality over rust analyzer
 -- Plug 'simrat39/rust-tools.nvim'
 completion['simrat39/rust-tools.nvim'] = {
-  opt = true,
+  --opt = true,
 --   ft = 'rust',
 }
 
 
+-- opt true
 completion['nvim-telescope/telescope.nvim'] = {
   cmd = 'Telescope',
   config = conf.telescope,

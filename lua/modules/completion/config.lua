@@ -2,7 +2,7 @@ local config = {}
 
 
 function config.nvim_lsp()
-  require('modules.completion.lspconfig')
+  require('modules.completion.lspconfigp')
 end
 
 
@@ -42,11 +42,12 @@ function config.nvim_cmp()
    local cmp = require'cmp'
    if not packer_plugins['cmp-buffer'].loaded then
      vim.cmd [[packadd cmp-nvim-lsp]]
+     vim.cmd [[packadd cmp-buffer]]
+     vim.cmd [[packadd cmp-path]]
+     vim.cmd [[packadd cmp-cmdline]]
+     -- self load
      vim.cmd [[packadd cmp-vsnip]]
      vim.cmd [[packadd vim-vsnip]]
-     vim.cmd [[packadd cmp-buffer]]
-     vim.cmd [[packadd cmp-cmdline]]
-     vim.cmd [[packadd cmp-path]]
    end
    cmp.setup({
     -- require'cmp'.setup {
@@ -109,18 +110,18 @@ function config.nvim_cmp()
 --         end
 --       end, { "i", "s" }),
     },
---     sources = cmp.config.sources({
---       { name = 'nvim_lsp' },
---       { name = 'vsnip' }, -- For vsnip users.
-     -- { name = 'luasnip' }, -- For luasnip users.
-     -- { name = 'ultisnips' }, -- For ultisnips users.
-     -- { name = 'snippy' }, -- For snippy users.
---     }, {
---       { name = 'buffer' },
---       { name = 'path' },
--- 
---     })
---   })
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+  -- { name = 'luasnip' }, -- For luasnip users.
+  -- { name = 'ultisnips' }, -- For ultisnips users.
+  -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer' },
+      { name = 'path' },
+
+    })
+  })
 
 --     sources = cmp.config.sources({
 --       { name = 'nvim_lsp' },
@@ -129,13 +130,22 @@ function config.nvim_cmp()
 
       -- Installed sources
 
-      sources = {
-        { name = 'nvim_lsp' },
-        { name = 'vsnip' },
-        { name = 'path' },
-        { name = 'buffer' },
-      },
-  })
+--       sources = {
+--         { name = 'nvim_lsp' },
+--         { name = 'vsnip' },
+--         { name = 'path' },
+--         { name = 'buffer' },
+--       },
+--   })
+
+   -- Set configuration for specific filetype.
+--     cmp.setup.filetype('gitcommit', {
+--       sources = cmp.config.sources({
+--         { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it. 
+--       }, {
+--         { name = 'buffer' },
+--       })
+--     })
      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
      cmp.setup.cmdline('/', {
        sources = {
