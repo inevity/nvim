@@ -33,12 +33,13 @@ tools['brooth/far.vim'] = {
   end
 }
 
-tools['iamcco/markdown-preview.nvim'] = {
-  ft = 'markdown',
-  config = function ()
-    vim.g.mkdp_auto_start = 0
-  end
-}
+--preservim/vim-markdown
+-- tools['iamcco/markdown-preview.nvim'] = {
+--   ft = 'markdown',
+--   config = function ()
+--     vim.g.mkdp_auto_start = 0
+--   end
+-- }
 
 tools['folke/which-key.nvim'] = {
   config = conf.which_key
