@@ -135,4 +135,19 @@ local function load_options()
   bind_option(bw_local)
 end
 
+-- vim.cmd([[
+--   if exists('$TMUX')
+--     let &t_SI = "\ePtmux;\e\e[1 q\e\\"
+--     let &t_SR = "\ePtmux;\e\e[4 q\e\\"
+-- "     let &t_EI = "\ePtmux;\e\e[2 q\e\\"
+--   else
+--     " insert
+--     let &t_SI = "\<Esc>[1 q"
+--     " replace
+--     let &t_SR = "\<Esc>[4 q"
+--     " normal
+-- "     let &t_EI = "\<Esc>[2 q"
+--   endif
+-- ]])
+
 load_options()
