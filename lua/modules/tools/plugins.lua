@@ -125,11 +125,23 @@ if vim.g.is_win or vim.g.is_mac then
   }
 end
 
+tools['ojroques/vim-oscyank'] = {
+}
+-- no impact for windows terminal
+tools['jszakmeister/vim-togglecursor'] = {
+  config = function ()
+    vim.g.togglecursor_insert = 'blinking_block'
+  end
+}
+
 tools['folke/zen-mode.nvim'] = {
   cmd = 'ZenMode',
 --   config = ,
   config = conf.zen_mode,
 }
 
+-- tools['jdhao/whitespace.nvim'] = {
+--   event = 'VimEnter',
+-- }
 
 return tools
