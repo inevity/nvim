@@ -263,5 +263,44 @@ function config.nvim_dap()
  --  require("dapui").setup()
 
 end
+function config.markdown()
+   -- """""""""""""""""""""""""plasticboy/vim-markdown settings"""""""""""""""""""
+   -- " Disable header folding
+   vim.g.vim_markdown_folding_disabled = 1
+   -- 
+   -- " Whether to use conceal feature in markdown
+   vim.g.vim_markdown_conceal = 1
+   -- 
+   -- " Disable math tex conceal and syntax highlight
+   vim.g.tex_conceal = ''
+   vim.g.vim_markdown_math = 0
+   -- 
+   -- " Support front matter of various format
+   -- " for YAML format 
+   vim.g.vim_markdown_frontmatter = 1  
+   -- " for TOML format   
+   vim.g.vim_markdown_toml_frontmatter = 1  
+   --  " for JSON format  
+   vim.g.vim_markdown_json_frontmatter = 1 
+   -- 
+   -- " Let the TOC window autofit so that it doesn't take too much space
+   vim.g.vim_markdown_toc_autofit = 1
+   -- 
+   -- """""""""""""""""""""""""markdown-preview settings"""""""""""""""""""
+   -- " Only setting this for suitable platforms
+   if vim.g.is_win or vim.g.is_mac then
+   --   " Do not close the preview tab when switching to other buffers
+       vim.g.mkdp_auto_close = 0
+   -- 
+   --   " Shortcuts to start and stop markdown previewing
+   --   nnoremap <silent> <M-m> :<C-U>MarkdownPreview<CR>
+   --   nnoremap <silent> <M-S-m> :<C-U>MarkdownPreviewStop<CR>
+      vim.api.nvim_set_keymap('n', '<M-m>', '<C-U>MarkdownPreview<CR>', {silent
+      = true})
+      vim.api.nvim_set_keymap('n', '<M-S-m>', '<C-U>MarkdownPreviewStop<CR>', {silent
+      = true})
+   end
+end
+
 
 return config
