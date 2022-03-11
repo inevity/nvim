@@ -27,6 +27,7 @@ local function load_dbs()
   return dbs
 end
 -- DB_CONNECTION_db_name=value.
+-- https://github.com/kristijanhusak/vim-dadbod-ui
 function config.vim_dadbod_ui()
   if packer_plugins['vim-dadbod'] and not packer_plugins['vim-dadbod'].loaded then
     vim.cmd [[packadd vim-dadbod]]
