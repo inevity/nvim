@@ -124,5 +124,11 @@ if vim.g.is_win or vim.g.is_mac then
   }
 end
 
+tools['folke/zen-mode.nvim'] = {
+  cmd = 'ZenMode',
+--   config = ,
+  config = conf.zen_mode,
+}
+
 
 return tools
