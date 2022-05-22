@@ -119,6 +119,7 @@ function config.nvim_cmp()
     }, {
       { name = 'buffer' },
       { name = 'path' },
+      { name = 'crates' },
 
     })
   })
@@ -221,6 +222,51 @@ function config.emmet()
   vim.g.user_emmet_install_global = 0
   vim.g.user_emmet_install_command = 0
   vim.g.user_emmet_mode = 'i'
+end
+
+function config.crates()
+  if not packer_plugins['plenary.nvim'].loaded then
+    vim.cmd [[packadd plenary.nvim]]
+  end
+  require('crates').setup {
+      text = {
+          loading = "  Loading...",
+          version = "  %s",
+          prerelease = "  %s",
+          yanked = "  %s yanked",
+          nomatch = "  Not found",
+          upgrade = "  %s",
+          error = "  Error fetching crate",
+      },
+      popup = {
+          text = {
+              title = "# %s",
+              pill_left = "",
+              pill_right = "",
+              created_label = "created        ",
+              updated_label = "updated        ",
+              downloads_label = "downloads      ",
+              homepage_label = "homepage       ",
+              repository_label = "repository     ",
+              documentation_label = "documentation  ",
+              crates_io_label = "crates.io      ",
+              categories_label = "categories     ",
+              keywords_label = "keywords       ",
+              prerelease = "%s pre-release",
+              yanked = "%s yanked",
+              enabled = "* s",
+              transitive = "~ s",
+              optional = "? %s",
+              loading = " ...",
+          },
+      },
+      cmp = {
+          text = {
+              prerelease = " pre-release ",
+              yanked = " yanked ",
+          },
+      },
+  }
 end
 
 return config

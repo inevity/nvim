@@ -121,4 +121,11 @@ completion['mattn/emmet-vim'] = {
   config = conf.emmet,
 }
 
+completion['saecki/crates.nvim'] = {
+  event = { "BufRead Cargo.toml" },
+  config = conf.crates,
+  requires = {
+    {'nvim-lua/plenary.nvim',opt = true},
+  }
+}
 return completion
