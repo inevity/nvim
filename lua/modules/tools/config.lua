@@ -38,6 +38,7 @@ function config.vim_dadbod_ui()
   vim.g.db_ui_winwidth = 35
 -- why get nil value?
 --   vim.g.db_ui_save_location = os.getenv("HOME") .. '/.cache/vim/db_ui_queries'
+--   TODO 
   vim.g.db_ui_save_location = '/root/.cache/vim/db_ui_queries'
   vim.g.dbs = load_dbs()
 end

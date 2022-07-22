@@ -38,13 +38,14 @@ function Packer:load_packer()
   packer.init({
     compile_path = packer_compiled,
     max_jobs = 16,
-    git = { 
+    git = {
 		clone_timeout = 120,
+    -- default_url_format = 'https://hub.fastgit.org/%s'
+    -- default_url_format = 'https://hub.fastgit.xyz/%s'
+    },
 		-- trace
 		log = { level = 'debug' },
-                -- default_url_format = 'https://hub.fastgit.org/%s'
 
-    },
     disable_commands = true
   })
 
