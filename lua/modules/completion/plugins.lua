@@ -128,4 +128,8 @@ completion['saecki/crates.nvim'] = {
     {'nvim-lua/plenary.nvim',opt = true},
   }
 }
+
+completion['tlaplus-community/tlaplus-nvim-plugin'] = {
+  ft = 'tla',
+}
 return completion

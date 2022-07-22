@@ -144,4 +144,25 @@ tools['folke/zen-mode.nvim'] = {
 --   event = 'VimEnter',
 -- }
 
+--  config = function ()
+--    if not packer_plugins['plenary.nvim'].loaded then
+--      vim.cmd [[packadd plenary.nvim]]
+--    end
+----    require("tla").setup()
+--
+--    require("tla").setup{
+--      -- Path to java binary directory. $JAVA_HOME by default
+--      java_executable = "/usr/lib/jvm/java-11-openjdk/bin",
+--      -- Options passed to the jvm when running tla2tools
+--      java_opts = { '-XX:+UseParallelGC' },
+--      -- Only needed if you don't wont automatic tla2tools installation
+--      tla2tools = "/home/baojg/workspace/tla/tla2tools.jar",
+--    }
+--  end,
+  --requires = {{'nvim-lua/plenary.nvim',opt = true}}
+tools['susliko/tla.nvim'] = {
+  config = conf.tla,
+  requires = {{'nvim-lua/plenary.nvim',opt = true}},
+}
+
 return tools

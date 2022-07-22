@@ -320,4 +320,46 @@ function config.zen_mode()
 })
 end
 
+
+function config.tla()
+  if packer_plugins['plenary.nvim'] and not packer_plugins['plenary.nvim'].loaded then
+    vim.cmd [[packadd plenary.nvim]]
+  end
+  -- first need plenary.nvim loaded 
+--  require("tla").setup()
+  require("tla").setup({
+  --   -- Path to java binary directory. $JAVA_HOME by default
+    --java_executable = "/usr/lib/jvm/java-11-openjdk/bin",
+    -- java_executable = "/usr/lib/jvm/java-11-openjdk/bin/java",
+    --java_executable = "/usr/lib/jvm/java-11-openjdk",
+   --  -- -- Options passed to the jvm when running tla2tools
+   -- --requires = {{'nvim-lua/plenary.nvim',opt = true}}
+   -- java_opts = { '-XX:+UseParallelGC' },
+   --  -- -- Only needed if you don't wont automatic tla2tools installation
+    --tla2tools = "/home/baojg/workspace/tla/tla2tools.jar",
+    -- tla2tools = "/home/baojg/workspace/tla/toolbox/tla2tools.jar",
+    tla2tools = "/home/baojg/workspace/tla/toolbox/tla2tools.jar",
+  })
+end
+-- -- cache issue lead , so need reset then 
+-- ----  require("tla").setup()
+-- function config.tla()
+--  -- if packer_plugins['one-small-step-for-vimkind'] and not packer_plugins['one-small-step-for-vimkind'].loaded then
+--   if packer_plugins['plenary.nvim'] and not packer_plugins['plenary.nvim'].loaded then
+--     vim.cmd [[packadd plenary.nvim]]
+--   end
+--   require("tla").setup()
+-- end
+-- require("tla").setup({
+-- --   -- Path to java binary directory. $JAVA_HOME by default
+--  --java_executable = "/usr/lib/jvm/java-11-openjdk/bin",
+--  java_executable = "/usr/lib/jvm/java-11-openjdk",
+-- --  -- -- Options passed to the jvm when running tla2tools
+-- -- --requires = {{'nvim-lua/plenary.nvim',opt = true}}
+--  java_opts = { '-XX:+UseParallelGC' },
+-- --  -- -- Only needed if you don't wont automatic tla2tools installation
+--  tla2tools = "/home/baojg/workspace/tla/tla2tools.jar",
+-- })
+
+
 return config
