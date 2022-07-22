@@ -175,6 +175,7 @@ local plug_map = {
   --   ["n|<leader>dl"] = map_cr("lua require('dap').repl.open()"):with_noremap()
   --       :with_silent()
 
+    ["n|<Leader>p"]     = map_cr("<cmd> lua require'nabla'.popup()"):with_noremap():with_silent(),
 };
 
 bind.nvim_load_mapping(plug_map)

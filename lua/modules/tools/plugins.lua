@@ -164,5 +164,8 @@ tools['susliko/tla.nvim'] = {
   config = conf.tla,
   requires = {{'nvim-lua/plenary.nvim',opt = true}},
 }
+tools['jbyuki/nabla.nvim'] = {
+  config = conf.nabla,
+}
 
 return tools
