@@ -268,7 +268,31 @@ local opts = {
                 experimental = {
                   procAttrMacros = true,
                 },
+                -- https://rustc-dev-guide.rust-lang.org/building/suggested.html
+                rustc = {
+                    source = "/rust/Cargo.toml",
+                },
 
+--               "rust-analyzer.checkOnSave.overrideCommand": [
+--                   "python3",
+--                   "x.py",
+--                   "check",
+--                   "--json-output"
+--               ],
+--               "rust-analyzer.rustfmt.overrideCommand": [
+--                   "./build/$TARGET_TRIPLE/stage0/bin/rustfmt",
+--                   "--edition=2021"
+--               ],
+--               "editor.formatOnSave": true,
+--               "rust-analyzer.cargo.buildScripts.enable": true,
+--               "rust-analyzer.cargo.buildScripts.overrideCommand": [
+--                   "cargo",
+--                   "check",
+--                   "-p",
+--                   "rustc_driver",
+--                   "--message-format=json"
+--               ],
+--
             }
         }
     },
@@ -278,6 +302,7 @@ if not packer_plugins['rust-tools.nvim'].loaded then
   vim.cmd [[packadd rust-tools.nvim]]
 end
 
+-- if set config for rustc-dev.
 require('rust-tools').setup(opts)
 
 -- dockerls, bashls, pyright
