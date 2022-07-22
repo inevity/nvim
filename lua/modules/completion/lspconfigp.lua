@@ -141,30 +141,55 @@ lspconfig.gopls.setup {
   }
 }
 
--- lua config: Done
+-- -- lua config: Done
+-- lspconfig.sumneko_lua.setup {
+--   --cmd = {
+--   --  global.home.."/workstation/lua-language-server/bin/macOS/lua-language-server",
+--   --  "-E",
+--   --  global.home.."/workstation/lua-language-server/main.lua"
+--   --};
+--   cmd = {
+--     "lua-language-server"
+--   };
+--   capabilities = capabilities,
+--   settings = {
+--     Lua = {
+--       diagnostics = {
+--         enable = true,
+--         globals = {"vim","packer_plugins"}
+--       },
+--       runtime = {version = "LuaJIT"},
+--       workspace = {
+--         library = vim.list_extend({[vim.fn.expand("$VIMRUNTIME/lua")] = true},{}),
+--       },
+--     },
+--   }
+-- }
+
 lspconfig.sumneko_lua.setup {
-  --cmd = {
-  --  global.home.."/workstation/lua-language-server/bin/macOS/lua-language-server",
-  --  "-E",
-  --  global.home.."/workstation/lua-language-server/main.lua"
-  --};
-  cmd = {
-    "lua-language-server"
-  };
-  capabilities = capabilities,
   settings = {
     Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+      },
       diagnostics = {
         enable = true,
-        globals = {"vim","packer_plugins"}
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim', "packer_plugins"},
       },
-      runtime = {version = "LuaJIT"},
       workspace = {
-        library = vim.list_extend({[vim.fn.expand("$VIMRUNTIME/lua")] = true},{}),
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
       },
     },
-  }
+  },
 }
+
 
 -- ts
 lspconfig.tsserver.setup {
