@@ -44,4 +44,11 @@ editor['kana/vim-niceblock']  = {
   opt = true
 }
 
+editor['lervag/vimtex'] = {
+    opt = true,
+    config = conf.vimtex,
+    ft = 'tex'
+}
+
+
 return editor
