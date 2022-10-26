@@ -137,7 +137,7 @@ function config.nvim_dap()
           end
       }
   }
-  
+
   dap.adapters.nlua = function(callback, conf)
       callback({
           type = 'server',
@@ -145,10 +145,7 @@ function config.nvim_dap()
           port = conf.port
       })
   end
-  
-  
   -- local dap = require "dap"
-  
   -- dap.configurations.lua = {
   --     {
   --         type = "nlua",
@@ -161,7 +158,6 @@ function config.nvim_dap()
   --         end
   --     }
   -- }
-  
   -- dap.adapters.nlua = function(callback, config)
   --     callback({type = 'server', host = config.host, port = config.port})
   -- end 
@@ -177,7 +173,7 @@ function config.nvim_dap()
     command = '/usr/bin/lldb',
     name = "lldb"
   }
-  
+
   dap.configurations.cpp = {
     {
       name = "Launch",
@@ -193,11 +189,11 @@ function config.nvim_dap()
       runInTerminal = false,
     },
   }
-  
+
   -- mirror c++ configuration into c and rust
   dap.configurations.c = dap.configurations.cpp
   dap.configurations.rust = dap.configurations.cpp
-  
+
   -- go debugging
   -- requires the delve package installed via  homebrew
   dap.adapters.go = function(callback, config)
@@ -255,11 +251,11 @@ function config.nvim_dap()
         request = "launch",
         mode = "test",
         program = "./${relativeFileDirname}"
-      } 
+      }
   }
   -- allow reading a VS Code launch.json file
   require('dap.ext.vscode').load_launchjs()
-  
+
  -- -- dap-ui setup
  --  require("dapui").setup()
 
@@ -278,11 +274,11 @@ function config.markdown()
    -- 
    -- " Support front matter of various format
    -- " for YAML format 
-   vim.g.vim_markdown_frontmatter = 1  
+   vim.g.vim_markdown_frontmatter = 1
    -- " for TOML format   
-   vim.g.vim_markdown_toml_frontmatter = 1  
+   vim.g.vim_markdown_toml_frontmatter = 1
    --  " for JSON format  
-   vim.g.vim_markdown_json_frontmatter = 1 
+   vim.g.vim_markdown_json_frontmatter = 1
    -- 
    -- " Let the TOC window autofit so that it doesn't take too much space
    vim.g.vim_markdown_toc_autofit = 1
@@ -335,7 +331,15 @@ function config.tla()
     --java_executable = "/usr/lib/jvm/java-11-openjdk",
    --  -- -- Options passed to the jvm when running tla2tools
    -- --requires = {{'nvim-lua/plenary.nvim',opt = true}}
-   -- java_opts = { '-XX:+UseParallelGC' },
+    java_opts = { '-XX:+UseParallelGC' },
+    ---gzip -cleanup -checkpoint 0 -noTE -workers auto
+    -- use abs path, so no use currenty path, so no use copied module file, but
+    -- how fix 
+    -- which use curretn dir is ok usr/lib/jvm/java-11-openjdk/bin/java -XX:+UseParallelGC -DTLA-Library=/home/baojg/workspace/tla/explore/genbu/CommunityModules-deps.jar  -cp /home/baojg/workspace/tla/toolbox/tla2tools.jar tlc2.TLC mp/swscop1.tla -gzip -cleanup -checkpoint 0  -workers auto  -config mp/swscop1.cfg
+    -- which use curretn dir is ok usr/lib/jvm/java-11-openjdk/bin/java -XX:+UseParallelGC -DTLA-Library=/home/baojg/workspace/tla/explore/genbu/CommunityModules-deps.jar  -cp /home/baojg/workspace/tla/toolbox/tla2tools.jar tlc2.TLC mp/swscop1.tla -gzip -cleanup -checkpoint 0  -workers auto  -config mp/swscop1.cfg
+    -- java_opts = { '-XX:+UseParallelGC', '-DTLA-Library=/home/baojg/workspace/tla/explore/genbu/CommunityModules-deps.jar' },
+    --java_opts = { '-XX:+UseParallelGC', '-cp /home/baojg/workspace/tla/explore/genbu/CommunityModules-deps.jar' },
+    --java_opts = { '-DTLA-Library=/home/baojg/workspace/tla/explore/genbu/CommunityModules.jar' },
    --  -- -- Only needed if you don't wont automatic tla2tools installation
     --tla2tools = "/home/baojg/workspace/tla/tla2tools.jar",
     -- tla2tools = "/home/baojg/workspace/tla/toolbox/tla2tools.jar",

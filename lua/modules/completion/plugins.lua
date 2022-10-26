@@ -129,7 +129,10 @@ completion['saecki/crates.nvim'] = {
   }
 }
 
-completion['tlaplus-community/tlaplus-nvim-plugin'] = {
-  ft = 'tla',
-}
+-- remove the assic to print plugin 
+-- disable not fully clean
+-- completion['tlaplus-community/tlaplus-nvim-plugin'] = {
+--   ft = 'tla',
+--   disable = true,
+-- }
 return completion
