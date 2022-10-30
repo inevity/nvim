@@ -66,17 +66,18 @@ function config.nvim_tree()
 --     ["s"] = ":lua require'nvim-tree'.on_keypress('vsplit')<CR>",
 --     ["i"] = ":lua require'nvim-tree'.on_keypress('split')<CR>",
 --   }
-  vim.g.nvim_tree_icons = {
-    default =  '',
-    symlink =  '',
-    git = {
-     unstaged = "✚",
-     staged =  "✚",
-     unmerged =  "≠",
-     renamed =  "≫",
-     untracked = "★",
-    },
-  }
+ -- vim.g.nvim_tree_icons = {
+ --   default =  '',
+ --   symlink =  '',
+ --   git = {
+ --    unstaged = "✚",
+ --    staged =  "✚",
+ --    unmerged =  "≠",
+ --    renamed =  "≫",
+ --    untracked = "★",
+ --   },
+ -- }
+  -- renderer.icons.glyphs
   require('nvim-tree').setup {
 --     update_focused_file = {
 --       -- false
@@ -88,11 +89,10 @@ function config.nvim_tree()
 -- --     view.mappings.list
      view = {
        width = 30,
-       height = 30,
        hide_root_folder = false,
        side = 'left',
        --true
-       auto_resize = true,
+       adaptive_size = true,
        mappings = {
          custom_only = false,
          list = {
@@ -105,6 +105,32 @@ function config.nvim_tree()
        relativenumber = false,
        signcolumn = "yes"
      },
+--     renderer = {
+--       glyphs = {
+--              default = "",
+--              symlink = "",
+--              bookmark = "",
+--              folder = {
+--                arrow_closed = "",
+--                arrow_open = "",
+--                default = "",
+--                open = "",
+--                empty = "",
+--                empty_open = "",
+--                symlink = "",
+--                symlink_open = "",
+--              },
+--              git = {
+--                unstaged = "✗",
+--                staged = "✓",
+--                unmerged = "",
+--                renamed = "➜",
+--                untracked = "★",
+--                deleted = "",
+--                ignored = "◌",
+--              },
+--       },
+--     },
   }
 
   -- On Ready Event for Lazy Loading work

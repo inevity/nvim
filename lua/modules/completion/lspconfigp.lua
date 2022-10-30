@@ -78,7 +78,7 @@ end
 
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 function _G.reload_lsp()
   vim.lsp.stop_client(vim.lsp.get_active_clients())
@@ -118,7 +118,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 })
 
 local enhance_attach = function(client,bufnr)
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     format.lsp_before_save()
   end
   api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -195,7 +195,7 @@ lspconfig.sumneko_lua.setup {
 lspconfig.tsserver.setup {
   capabilities = capabilities,
   on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.document_formatting = false
     enhance_attach(client)
   end
 }
@@ -222,8 +222,7 @@ lspconfig.clangd.setup {
 
 local opts = {
     tools = {
-        autoSetHints = true,
-        hover_with_actions = true,
+        -- hover_with_actions = true,
         runnables = {
             use_telescope = true
         },
@@ -231,6 +230,26 @@ local opts = {
             show_parameter_hints = false,
             parameter_hints_prefix = "",
             other_hints_prefix = "",
+            auto = true,
+        },
+        hover_actions = {
+
+  --        -- the border that is used for the hover window
+  --        -- see vim.api.nvim_open_win()
+  --        border = {
+  --          { "╭", "FloatBorder" },
+  --          { "─", "FloatBorder" },
+  --          { "╮", "FloatBorder" },
+  --          { "│", "FloatBorder" },
+  --          { "╯", "FloatBorder" },
+  --          { "─", "FloatBorder" },
+  --          { "╰", "FloatBorder" },
+  --          { "│", "FloatBorder" },
+  --        },
+
+          -- whether the hover action window gets automatically focused
+          -- default: false
+          auto_focus = true,
         },
     },
 
@@ -241,6 +260,20 @@ local opts = {
         capabilities = capabilities,
         -- on_attach is a callback called when the language server attachs to the buffer
         -- on_attach = on_attach,
+
+       -- how pass rt? in the ? 
+        on_attach = function(_, bufnr)
+           -- Hover actions
+           local rt = require("rust-tools")
+
+           -- vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+           vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
+           -- Code action groups
+           vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+        end,
+
+
+
         settings = {
             -- to enable rust-analyzer settings visit:
             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
@@ -257,17 +290,21 @@ local opts = {
                 cargo = {
                   loadOutDirsFromCheck = true,
                   allFeatures = true,
-                  runBuildScripts = true,
+                  --runBuildScripts = true,
+                  buildScripts = {
+                    enable = true,
+                  },
                 },
                 procMacro = {
                   enable = true,
+                  attributes = true,
                 },
 --                 checkOnSave = {
 --                   command = "clippy",
 --                 },
-                experimental = {
-                  procAttrMacros = true,
-                },
+                --experimental = {
+                  --procAttrMacros = true,
+                --},
                 -- https://rustc-dev-guide.rust-lang.org/building/suggested.html
                 rustc = {
                     source = "/rust/Cargo.toml",
@@ -295,6 +332,15 @@ local opts = {
 --
             }
         }
+    },
+     -- TODO add debug 
+     -- debugging stuff
+    dap = {
+      adapter = {
+        type = "executable",
+        command = "lldb-vscode",
+        name = "rt_lldb",
+      },
     },
 }
 

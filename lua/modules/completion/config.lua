@@ -260,12 +260,12 @@ function config.crates()
               loading = " ...",
           },
       },
-      cmp = {
+      src = {
           text = {
               prerelease = " pre-release ",
-              yanked = " yanked ",
-          },
+             yanked = " yanked ",
       },
+    },
   }
 end
 
