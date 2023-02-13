@@ -62,6 +62,7 @@ function config.nvim_cmp()
     },
     -- TODO: ref nvim-cmp advanced config or nvim-rust config 
     -- TODO: move to keymap init
+    -- TODO: only Ce and Tab ,CR function .
     mapping = {
       ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
       ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),

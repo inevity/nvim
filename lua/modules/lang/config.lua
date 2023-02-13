@@ -41,8 +41,8 @@ function config.nvim_treesitter()
   }
 --   require("nvim-treesitter.install").prefer_git = true
     require("nvim-treesitter.install").command_extra_args = {
---           curl = { "--proxy", "https://192.168.1.112:1088" },
-          --curl = { "--proxy", "http://192.168.1.188:8080" },
+          --  curl = { "--proxy", "https://192.168.9.89:1088" },
+          curl = { "--proxy", "http://192.168.9.89:8080" },
           -- curl = { "--proxy", "http://192.168.1.126:8080" },
     }
     require('nvim-treesitter.install').update({ with_sync = true })

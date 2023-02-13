@@ -79,6 +79,8 @@ end
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 
 function _G.reload_lsp()
   vim.lsp.stop_client(vim.lsp.get_active_clients())
@@ -295,6 +297,7 @@ local opts = {
                     enable = true,
                   },
                 },
+                inlayHints = { locationLinks = false },
                 procMacro = {
                   enable = true,
                   attributes = true,
@@ -306,9 +309,9 @@ local opts = {
                   --procAttrMacros = true,
                 --},
                 -- https://rustc-dev-guide.rust-lang.org/building/suggested.html
-                rustc = {
-                    source = "/rust/Cargo.toml",
-                },
+               -- rustc = {
+               --     source = "/rust/Cargo.toml",
+               -- },
 
 --               "rust-analyzer.checkOnSave.overrideCommand": [
 --                   "python3",
