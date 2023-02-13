@@ -177,6 +177,9 @@ local plug_map = {
   --       :with_silent()
 
     ["n|<Leader>p"]     = map_cr("<cmd> lua require'nabla'.popup()"):with_noremap():with_silent(),
+    -- knap set 
+    ["n|<F7>"]           = map_cmd("<cmd> lua require('knap').toggle_autopreviewing()<CR>"):with_noremap():with_silent(),
+    ["i|<F7>"]           = map_cmd("<cmd> lua require('knap').toggle_autopreviewing()<CR>"):with_noremap():with_silent(),
 };
 
 bind.nvim_load_mapping(plug_map)

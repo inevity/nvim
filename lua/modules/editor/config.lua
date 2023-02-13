@@ -84,4 +84,59 @@ function config.vimtex()
    -- vim.g.vimtex_compiler_progname = 'nvr'
 end
 
+function config.knap()
+    local gknapsettings = {
+       -- htmloutputext = "html",
+       -- htmltohtml = "none",
+       -- htmltohtmlviewerlaunch = "falkon %outputfile%",
+       -- htmltohtmlviewerrefresh = "none",
+
+       -- mdoutputext = "html",
+       -- mdtohtml = "pandoc --standalone %docroot% -o %outputfile%",
+       -- mdtohtmlviewerlaunch = "falkon %outputfile%",
+       -- mdtohtmlviewerrefresh = "none",
+
+       -- mdtopdf = "pandoc %docroot% -o %outputfile%",
+       -- mdtopdfviewerlaunch = "sioyek %outputfile%",
+       -- mdtopdfviewerrefresh = "none",
+
+       -- markdownoutputext = "html",
+
+       -- markdowntohtml = "pandoc --standalone %docroot% -o %outputfile%",
+       -- markdowntohtmlviewerlaunch = "falkon %outputfile%",
+       -- markdowntohtmlviewerrefresh = "none",
+
+       -- markdowntopdf = "pandoc %docroot% -o %outputfile%",
+       -- markdowntopdfviewerlaunch = "sioyek %outputfile%",
+       -- markdowntopdfviewerrefresh = "none",
+
+       -- --texoutputext = "pdf",
+       -- -- textopdf = "pdflatex -synctex=1 -halt-on-error -interaction=batchmode %docroot%",
+       -- -- textopdf = "latexmk", 
+     ----   textopdfviewerlaunch = "mupdf %outputfile%",
+     ----   textopdfviewerrefresh = "kill -HUP %pid%",
+
+     ----   textopdfviewerlaunch = "sioyek --inverse-search 'nvim --headless -es --cmd \"lua require('\"'\"'knaphelper'\"'\"').relayjump('\"'\"'%servername%'\"'\"','\"'\"'%1'\"'\"',%2,0)\"' --reuse-instance %outputfile%",
+     ----   textopdfviewerrefresh = "none",
+     ----   textopdfforwardjump = "sioyek --inverse-search 'nvim --headless -es --cmd \"lua require('\"'\"'knaphelper'\"'\"').relayjump('\"'\"'%servername%'\"'\"','\"'\"'%1'\"'\"',%2,0)\"' --reuse-instance --forward-search-file %srcfile% --forward-search-line %line% %outputfile%"
+       -- texoutputext = "pdf",
+       -- textopdf = "pdflatex -interaction=batchmode -halt-on-error -synctex=1 %docroot%",
+       -- -- textopdfviewerlaunch = "sioyek --inverse-search 'nvim --headless -es --cmd \"lua require('\"'\"'knaphelper'\"'\"').relayjump('\"'\"'%servername%'\"'\"','\"'\"'%1'\"'\"',%2,%3)\"' --reuse-instance %outputfile%",
+       -- textopdfviewerlaunch = "/Applications/sioyek.app/Contents/MacOS/sioyek --inverse-search 'nvim --headless -es --cmd \"lua require('\"'\"'knaphelper'\"'\"').relayjump('\"'\"'%servername%'\"'\"','\"'\"'%1'\"'\"',%2,%3)\"' --reuse-instance %outputfile%",
+       -- textopdfviewerrefresh = "none",
+       -- textopdfforwardjump = "/Applications/sioyek.app/Contents/MacOS/sioyek --inverse-search 'nvim --headless -es --cmd \"lua require('\"'\"'knaphelper'\"'\"').relayjump('\"'\"'%servername%'\"'\"','\"'\"'%1'\"'\"',%2,%3)\"' --reuse-instance --forward-search-file %srcfile% --forward-search-line %line% %outputfile%",
+       -- textopdfshorterror = "A=%outputfile% ; LOGFILE=\"${A%.pdf}.log\" ; rubber-info \"$LOGFILE\" 2>&1 | head -n 1",
+       -- delay = 250
+        texoutputext = "pdf",
+        textopdf = "pdflatex -synctex=1 -halt-on-error -interaction=batchmode %docroot%",
+        --textopdfviewerlaunch = "open -a mupdf %outputfile%",
+        --textopdfviewerlaunch = "mupdf-gl %outputfile%",
+        -- textopdfviewerlaunch = "open %outputfile%",
+        textopdfviewerlaunch = "open -a Skim  %outputfile%",
+        textopdfviewerrefresh = "kill -HUP %pid%"
+
+    }
+    vim.g.knap_settings = gknapsettings
+end
+
 return config

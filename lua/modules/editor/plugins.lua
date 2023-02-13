@@ -50,5 +50,12 @@ editor['lervag/vimtex'] = {
     ft = 'tex'
 }
 
+editor['frabjous/knap'] = {
+ --   opt = true,
+ --   config = conf.knap,
+    -- ft = { 'tex'
+}
+
+
 
 return editor
