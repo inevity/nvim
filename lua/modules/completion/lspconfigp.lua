@@ -168,7 +168,8 @@ lspconfig.gopls.setup {
 --   }
 -- }
 
-lspconfig.sumneko_lua.setup {
+--lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       runtime = {
