@@ -126,6 +126,7 @@ if vim.g.is_win or vim.g.is_mac then
 end
 
 tools['ojroques/vim-oscyank'] = {
+  config = conf.oscyank,
 }
 -- no impact for windows terminal
 tools['jszakmeister/vim-togglecursor'] = {

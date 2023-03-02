@@ -299,6 +299,10 @@ function config.markdown()
    end
 end
 
+function config.oscyank()
+  vim.g.oscyank_term = 'default'
+end
+
 function config.zen_mode()
   require("zen-mode").setup({
   window = {
