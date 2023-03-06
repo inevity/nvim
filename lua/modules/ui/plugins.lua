@@ -19,7 +19,8 @@ ui['NTBBloodbath/galaxyline.nvim'] = {
   branch = 'main',
   config = conf.galaxyline,
   -- requires = 'kyazdani42/nvim-web-devicons'
-  requires = { "kyazdani42/nvim-web-devicons", opt = true }
+  --requires = { "kyazdani42/nvim-web-devicons", opt = true }
+  requires = 'kyazdani42/nvim-web-devicons'
 
 }
 
