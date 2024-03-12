@@ -180,6 +180,36 @@ local plug_map = {
     -- knap set 
     ["n|<F7>"]           = map_cmd("<cmd> lua require('knap').toggle_autopreviewing()<CR>"):with_noremap():with_silent(),
     ["i|<F7>"]           = map_cmd("<cmd> lua require('knap').toggle_autopreviewing()<CR>"):with_noremap():with_silent(),
+    ["n|<c-p>"]          = map_cr("<cmd> lua require('fzf-lua').files()"):with_noremap():with_silent(),
+    --["n|<c->"]          = map_cr("<cmd> lua require('fzf-lua').grep_project()"):with_noremap():with_silent(),
+    ["n|<c-g>"]          = map_cr("<cmd> lua require('fzf-lua').grep_cword()"):with_noremap():with_silent(),
+    ["n|<c-\\>"]          = map_cr("<cmd> lua require('fzf-lua').buffers()"):with_noremap():with_silent(),
+    ["n|<c-l>"]          = map_cr("<cmd> lua require('fzf-lua').live_grep_glob()"):with_noremap():with_silent(),
+    ["n|<F1>"]          = map_cr("<cmd> lua require('fzf-lua').help_tags()"):with_noremap():with_silent(),
+    ["n|<c-k>"]          = map_cr("<cmd> lua require('fzf-lua').builtin()"):with_noremap():with_silent(),
+    -- require("fzf-lua").utils.info(
+    -- "|<C-\\> buffers|<C-p> files|<C-g> grep|<C-l> live grep|<C-k> builtin|<F1> help|")
+
+    -- 0.9 before nvim cscope set 
+    ["n|<Leader>cg"]     = map_cr('cs f g <C-R>=expand("<cword>")<CR>'):with_noremap():with_silent(),
+    ["n|<Leader>cc"]     = map_cr('cs f c <C-R>=expand("<cword>")<CR>'):with_noremap():with_silent(),
+    ["n|<Leader>cd"]     = map_cr('cs f d <C-R>=expand("<cword>")<CR>'):with_noremap():with_silent(),
+    ["n|<Leader>cy"]     = map_cr('cs f e <C-R>=expand("<cword>")<CR>'):with_noremap():with_silent(),
+    ["n|<Leader>cf"]     = map_cr('cs f f <C-R>=expand("<cword>")<CR>'):with_noremap():with_silent(),
+    ["n|<Leader>ci"]     = map_cr('cs f i <C-R>=expand("<cword>")<CR>'):with_noremap():with_silent(),
+    ["n|<Leader>cs"]     = map_cr('cs f s <C-R>=expand("<cword>")<CR>'):with_noremap():with_silent(),
+    --["n|<Leader>ct"]     = map_cr('cs f t <C-R>=expand("<cword>")<CR>'):with_noremap():with_silent(),
+    --  { "<leader>lq", "<cmd>LBQuestions<cr>", desc = "List Questions" },
+    -- { "<leader>ll", "<cmd>LBQuestion<cr>", desc = "View Question" },
+    -- { "<leader>lr", "<cmd>LBReset<cr>", desc = "Reset Code" },
+    -- { "<leader>lt", "<cmd>LBTest<cr>", desc = "Run Code" },
+    -- { "<leader>ls", "<cmd>LBSubmit<cr>", desc = "Submit Code" },
+    ["n|<Leader>lq"]  = map_cr("<cmd> LBQuestions"):with_noremap():with_silent(),
+    ["n|<Leader>ll"]  = map_cr("<cmd> LBQuestion"):with_noremap():with_silent(),
+    ["n|<Leader>lr"]  = map_cr("<cmd> LBReset"):with_noremap():with_silent(),
+    ["n|<Leader>lt"]  = map_cr("<cmd> LBTest"):with_noremap():with_silent(),
+    ["n|<Leader>ls"]  = map_cr("<cmd> LBSubmit"):with_noremap():with_silent(),
+
 };
 
 bind.nvim_load_mapping(plug_map)

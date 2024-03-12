@@ -370,5 +370,17 @@ end
 --  tla2tools = "/home/baojg/workspace/tla/tla2tools.jar",
 -- })
 
+function config.leetbuddy()
+  if packer_plugins['plenary.nvim'] and not packer_plugins['plenary.nvim'].loaded then
+    vim.cmd [[packadd plenary.nvim]]
+  end
+  if packer_plugins['telescope.nvim'] and not packer_plugins['telescope.nvim'].loaded then
+    vim.cmd [[packadd telescope.nvim]]
+  end
+  require("leetbuddy").setup({
+        domain = "com",  -- `cn` for chinese leetcode
+        language = "rs",
+  })
+end
 
 return config

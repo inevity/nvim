@@ -169,4 +169,22 @@ tools['jbyuki/nabla.nvim'] = {
   config = conf.nabla,
 }
 
+tools['ibhagwan/fzf-lua'] = {
+  requires = {{'nvim-tree/nvim-web-devicons'}}
+}
+tools['Dhanus3133/LeetBuddy.nvim'] = {
+  requires = {
+              {'nvim-lua/plenary.nvim'},
+              {'nvim-telescope/telescope.nvim'}
+  },
+  config = conf.leetbuddy,
+--   config = function()
+--   	require("leetbuddy").setup({
+--           domain = "com",  -- `cn` for chinese leetcode
+--           language = "rs",
+--     })
+--   end,
+}
+
+
 return tools

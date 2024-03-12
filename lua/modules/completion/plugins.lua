@@ -135,4 +135,6 @@ completion['saecki/crates.nvim'] = {
 --   ft = 'tla',
 --   disable = true,
 -- }
+completion['dhananjaylatkar/cscope_maps.nvim'] = {
+}
 return completion

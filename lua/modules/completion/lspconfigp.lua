@@ -3,7 +3,7 @@ local lspconfig = require 'lspconfig'
 -- local global = require 'core.global'
 local format = require('modules.completion.format')
 
-vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("info")
 
 if not packer_plugins['lspsaga.nvim'].loaded then
   vim.cmd [[packadd lspsaga.nvim]]
@@ -17,7 +17,7 @@ local saga = require 'lspsaga'
 -- })
 local lspsaga = require 'lspsaga'
 lspsaga.setup { -- defaults ...
-  debug = true,
+  debug = false,
   use_saga_diagnostic_sign = true,
   -- diagnostic sign
   error_sign = "",
@@ -223,6 +223,46 @@ lspconfig.clangd.setup {
 --   capabilities = capabilities,
 -- }
 
+local on_init = function(client, bufnr)
+    -- project-specific settings
+    local path = client.workspace_folders[1].name
+
+    local function path_ends_with(ending)
+        assert(ending ~= "")
+        return path:sub(-#ending) == ending
+    end
+
+    if path_ends_with("dev/personal/wasmtime") then
+        client.config.settings["rust-analyzer"].cargo.features = { "wasmtime/cranelift" }
+        client.config.settings["rust-analyzer"].cargo.extraEnv = { RUSTFLAGS = "--cfg=compiler" }
+        client.config.settings["rust-analyzer"].checkOnSave.features = { "wasmtime/cranelift" }
+        client.config.settings["rust-analyzer"].checkOnSave.extraEnv = { RUSTFLAGS = "--cfg=compiler" }
+    elseif path_ends_with("dev/personal/wasynth") then
+        client.config.settings["rust-analyzer"].cargo.features = { "bytes_trace" }
+        client.config.settings["rust-analyzer"].checkOnSave.extraEnv = { "bytes_trace" }
+    elseif path_ends_with("tokio") then
+                --extraArgs = [],
+                -- extraEnv = {"RUSTFLAGS="},
+                -- cfgs = {}
+        --client.config.settings["rust-analyzer"].cargo.features = { "bytes_trace" }
+        client.config.settings["rust-analyzer"].cargo.features =  "all"
+        client.config.settings["rust-analyzer"].cargo.extraEnv = { RUSTFLAGS = "-Dwarning --cfg tokio_unstable --cfg tokio_taskdump", RUSTDOCFLAGS = "--cfg tokio_unstable --cfg tokio_taskdump" }
+       -- client.config.settings["rust-analyzer"].cargo.extraArgs = { "bytes_trace" }
+       -- client.config.settings["rust-analyzer"].cargo.cfgs = { "bytes_trace" }
+       -- client.config.settings["rust-analyzer"].checkOnSave.extraEnv = { "bytes_trace" }
+    elseif path_ends_with("genbu-server") then
+        client.config.settings["rust-analyzer"].cargo.features =  {"jemalloc", "headers", "console", "rtmetric", "s3opendal", "kvd_c_runtime", "tnx-perf-optimize", "mdcache"}
+        client.config.settings["rust-analyzer"].cargo.noDefaultFeatures = true
+      --  client.config.settings["rust-analyzer"].cargo.extraEnv = { RUSTFLAGS = "-Dwarning --cfg tokio_unstable --cfg tokio_taskdump", RUSTDOCFLAGS = "--cfg tokio_unstable --cfg tokio_taskdump" }
+        client.config.settings["rust-analyzer"].cargo.extraEnv = { RUSTFLAGS = "--cfg tokio_unstable --cfg tokio_taskdump", RUSTDOCFLAGS = "--cfg tokio_unstable --cfg tokio_taskdump" }
+    else
+        client.config.settings["rust-analyzer"].cargo.features =  "all"
+        client.config.settings["rust-analyzer"].cargo.extraEnv = { RUSTFLAGS = "-Dwarning --cfg tokio_unstable --cfg tokio_taskdump", RUSTDOCFLAGS = "--cfg tokio_unstable --cfg tokio_taskdump" }
+    end
+
+    client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+end
+
 local opts = {
     tools = {
         -- hover_with_actions = true,
@@ -259,8 +299,10 @@ local opts = {
     -- all the opts to send to nvim-lspconfig
     -- these override the defaults set by rust-tools.nvim
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+
     server = {
         capabilities = capabilities,
+        on_init = on_init,
         -- on_attach is a callback called when the language server attachs to the buffer
         -- on_attach = on_attach,
 
@@ -281,6 +323,9 @@ local opts = {
             -- to enable rust-analyzer settings visit:
             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
             ["rust-analyzer"] = {
+                diagnostics = {
+                  enable = true,
+                },
                 -- enable clippy on save
                 checkOnSave = {
                     command = "clippy"
@@ -292,12 +337,17 @@ local opts = {
                 },
                 cargo = {
                   loadOutDirsFromCheck = true,
-                  allFeatures = true,
+                  --allFeatures = false,
+                  noDefaultFeatures = false,
+                  --features = ["all"],
                   --runBuildScripts = true,
                   buildScripts = {
                     enable = true,
                   },
                 },
+                --extraArgs = [],
+                -- extraEnv = {"RUSTFLAGS="},
+                -- cfgs = {}
                 inlayHints = { locationLinks = false },
                 procMacro = {
                   enable = true,
@@ -366,3 +416,10 @@ for _,server in ipairs(servers) do
     on_attach = enhance_attach
   }
 end
+
+require'lspconfig'.ansiblels.setup{}
+
+require'lspconfig'.ocamllsp.setup{}
+
+require'cscope_maps'.setup()
+
