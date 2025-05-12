@@ -153,28 +153,94 @@ function config.gitsigns()
       topdelete = {hl ='GitGutterDeleteChange',text = '▔'},
       changedelete = {hl = 'GitGutterChange', text = '▎'},
     },
-    keymaps = {
-       -- Default keymap options
-       noremap = true,
-       buffer = true,
 
-       ['n ]g'] = { expr = true, "&diff ? ']g' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'"},
-       ['n [g'] = { expr = true, "&diff ? '[g' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'"},
+    on_attach = function(bufnr)
+        local gitsigns = require('gitsigns')
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
+        end
+        -- Navigation
+        map('n', ']c', function()
+          if vim.wo.diff then
+            vim.cmd.normal({']c', bang = true})
+          else
+            gitsigns.nav_hunk('next')
+          end
+        end)
+    
+        map('n', '[c', function()
+          if vim.wo.diff then
+            vim.cmd.normal({'[c', bang = true})
+          else
+            gitsigns.nav_hunk('prev')
+          end
+        end)
+    
+        -- Actions
+        map('n', '<leader>hs', gitsigns.stage_hunk)
+        map('n', '<leader>hr', gitsigns.reset_hunk)
+    
+        map('v', '<leader>hs', function()
+          gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+        end)
+    
+        map('v', '<leader>hr', function()
+          gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+        end)
+    
+        map('n', '<leader>hS', gitsigns.stage_buffer)
+        map('n', '<leader>hR', gitsigns.reset_buffer)
+        map('n', '<leader>hp', gitsigns.preview_hunk)
+        map('n', '<leader>hi', gitsigns.preview_hunk_inline)
+    
+        map('n', '<leader>hb', function()
+          gitsigns.blame_line({ full = true })
+        end)
+    
+        map('n', '<leader>hd', gitsigns.diffthis)
+    
+        map('n', '<leader>hD', function()
+          gitsigns.diffthis('~')
+        end)
+    
+        map('n', '<leader>hQ', function() gitsigns.setqflist('all') end)
+        map('n', '<leader>hq', gitsigns.setqflist)
+    
+        -- Toggles
+        map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+        map('n', '<leader>tw', gitsigns.toggle_word_diff)
+    
+        -- Text object
+        map({'o', 'x'}, 'ih', gitsigns.select_hunk)
+      end
 
-       ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-       ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-       ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-       ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-       ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line()<CR>',
-
-       -- Text objects
-       ['o ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>',
-       ['x ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>'
-     },
+--    keymaps = {
+--       -- Default keymap options
+--       noremap = true,
+--       buffer = true,
+--
+--       ['n ]g'] = { expr = true, "&diff ? ']g' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'"},
+--       ['n [g'] = { expr = true, "&diff ? '[g' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'"},
+--
+--       ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+--       ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+--       ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+--       ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+--       ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line()<CR>',
+--
+--       -- Text objects
+--       ['o ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>',
+--       ['x ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>'
+--     },
   }
+
+
 end
 
 function config.indent_blakline()
+  require("ibl").setup()
   vim.g.indent_blankline_char = "│"
   vim.g.indent_blankline_show_first_indent_level = true
   vim.g.indent_blankline_filetype_exclude = {
@@ -216,9 +282,17 @@ function config.indent_blakline()
     "while",
     "for"
   }
+  vim.api.nvim_create_user_command("IndentBlanklineRefresh", function()
+    -- require("ibl").refresh(nil)
+    -- require("ibl").refresh_all()
+    require("ibl").refresh(vim.api.nvim_get_current_buf())
+  end, {})
+
   -- because lazy load indent-blankline so need readd this autocmd
   -- first comment,if installed ,then enable.
   vim.cmd('autocmd CursorMoved * IndentBlanklineRefresh')
+
+
 end
 
 return config

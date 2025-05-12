@@ -1,5 +1,6 @@
 local global = require 'core.global'
 local vim = vim
+vim.loader.enable()
 
 -- Create cache dir and subs dir
 local createdir = function ()
@@ -44,6 +45,7 @@ local disable_distribution_plugins= function()
 end
 
 local leader_map = function()
+  -- leader set
   vim.g.mapleader = " "
   vim.api.nvim_set_keymap('n',' ','',{noremap = true})
   vim.api.nvim_set_keymap('x',' ','',{noremap = true})
@@ -62,5 +64,15 @@ local load_core =function()
   require('core.event')
   pack.load_compile()
 end
+
+--local orig_make_range_params = vim.lsp.util.make_range_params
+--vim.lsp.util.make_range_params = function(...)
+--  local args = { ... }
+--  if not args[2] then
+--    args[2] = { encoding = "utf-16" }
+--  end
+--  return orig_make_range_params(unpack(args))
+--end
+
 
 load_core()

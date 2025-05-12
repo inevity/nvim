@@ -27,6 +27,7 @@ ui['NTBBloodbath/galaxyline.nvim'] = {
 ui['lukas-reineke/indent-blankline.nvim'] = {
   event = 'BufRead',
   branch = 'master',
+  main = "ibl",
   config = conf.indent_blakline
 }
 

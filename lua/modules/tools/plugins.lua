@@ -59,7 +59,10 @@ tools['mfussenegger/nvim-dap'] = {
 }
 
 tools['rcarriga/nvim-dap-ui'] = {
-  requires = "nvim-dap",
+  requires = {
+    { "nvim-dap" },
+    { "nvim-neotest/nvim-nio"}
+  },
   after = "nvim-dap",
   config = function()
   	require("dapui").setup()
