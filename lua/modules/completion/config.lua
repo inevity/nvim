@@ -1,4 +1,7 @@
+local pack = require('core.pack')
+
 local config = {}
+
 
 
 function config.nvim_lsp()
@@ -40,14 +43,16 @@ end
 
 function config.nvim_cmp()
    local cmp = require'cmp'
-   if not packer_plugins['cmp-buffer'].loaded then
-     vim.cmd [[packadd cmp-nvim-lsp]]
-     vim.cmd [[packadd cmp-buffer]]
-     vim.cmd [[packadd cmp-path]]
-     vim.cmd [[packadd cmp-cmdline]]
+   -- if not packer_plugins['cmp-buffer'].loaded then
+   if not pack.is_plugin_loaded('cmp-buffer') then
+     -- vim.cmd [[packadd cmp-nvim-lsp]]
+     -- vim.cmd [[packadd cmp-buffer]]
+     -- vim.cmd [[packadd cmp-path]]
+     -- vim.cmd [[packadd cmp-cmdline]]
+     require("lazy").load({ plugins = { "cmp-nvim-lsp", "cmp-buffer", "cmp-path", "cmp-cmdline", "cmp-vsnip", "vim-vsnip" } })
      -- self load
-     vim.cmd [[packadd cmp-vsnip]]
-     vim.cmd [[packadd vim-vsnip]]
+     -- vim.cmd [[packadd cmp-vsnip]]
+     -- vim.cmd [[packadd vim-vsnip]]
    end
    cmp.setup({
     -- require'cmp'.setup {
@@ -179,10 +184,12 @@ end
 
 -- other snip config here  
 function config.telescope()
-  if not packer_plugins['plenary.nvim'].loaded then
-    vim.cmd [[packadd plenary.nvim]]
-    vim.cmd [[packadd popup.nvim]]
-    vim.cmd [[packadd telescope-fzy-native.nvim]]
+  -- if not packer_plugins['plenary.nvim'].loaded then
+  if not pack.is_plugin_loaded('plenary.nvim') then
+    require("lazy").load({ plugins = { "plenary.nvim", "popup.nvim", "telescope-fzy-native.nvim" } })
+    -- vim.cmd [[packadd plenary.nvim]]
+    -- vim.cmd [[packadd popup.nvim]]
+    -- vim.cmd [[packadd telescope-fzy-native.nvim]]
   end
   require('telescope').setup {
     defaults = {
@@ -226,8 +233,10 @@ function config.emmet()
 end
 
 function config.crates()
-  if not packer_plugins['plenary.nvim'].loaded then
-    vim.cmd [[packadd plenary.nvim]]
+ -- if not packer_plugins['plenary.nvim'].loaded then
+  if not pack.is_plugin_loaded('plenary.nvim') then
+    -- vim.cmd [[packadd plenary.nvim]]
+    require("lazy").load({ plugins = { "plenary.nvim" } })
   end
   require('crates').setup {
       text = {

@@ -125,6 +125,7 @@ completion['saecki/crates.nvim'] = {
   event = { "BufRead Cargo.toml" },
   config = conf.crates,
   requires = {
+    -- plenary.nvim need config as requred load 	  
     {'nvim-lua/plenary.nvim',opt = true},
   }
 }

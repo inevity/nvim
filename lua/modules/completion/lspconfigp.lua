@@ -1,12 +1,15 @@
 local api = vim.api
 local lspconfig = require 'lspconfig'
 -- local global = require 'core.global'
+local pack = require 'core.pack'
 local format = require('modules.completion.format')
 
 vim.lsp.set_log_level("info")
 
-if not packer_plugins['lspsaga.nvim'].loaded then
-  vim.cmd [[packadd lspsaga.nvim]]
+-- if not packer_plugins['lspsaga.nvim'].loaded then
+if not pack.is_plugin_loaded('lspsaga.nvim')   then
+  -- vim.cmd [[packadd lspsaga.nvim]]
+  require("lazy").load({ plugins = { "lspsaga.nvim" } })
 end
 
 local saga = require 'lspsaga'
@@ -67,8 +70,10 @@ lspsaga.setup { -- defaults ...
 }
 
 
-if not packer_plugins['cmp-nvim-lsp'].loaded then
-  vim.cmd [[packadd cmp-nvim-lsp]]
+-- if not packer_plugins['cmp-nvim-lsp'].loaded then
+if not pack.is_plugin_loaded('cmp-nvim-lsp')   then
+  -- vim.cmd [[packadd cmp-nvim-lsp]]
+  require("lazy").load({ plugins = { "cmp-nvim-lsp" } })
 end
 
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -179,7 +184,7 @@ lspconfig.lua_ls.setup {
       diagnostics = {
         enable = true,
         -- Get the language server to recognize the `vim` global
-        globals = {'vim', "packer_plugins"},
+        -- globals = {'vim', "packer_plugins"},
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -398,8 +403,10 @@ local opts = {
     },
 }
 
-if not packer_plugins['rust-tools.nvim'].loaded then
-  vim.cmd [[packadd rust-tools.nvim]]
+-- if not packer_plugins['rust-tools.nvim'].loaded then
+if not pack.is_plugin_loaded('rust-tools.nvim')   then
+   -- vim.cmd [[packadd rust-tools.nvim]]
+   require("lazy").load({ plugins = { "rust-tools.nvim" } })
 end
 
 -- if set config for rustc-dev.

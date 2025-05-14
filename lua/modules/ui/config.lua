@@ -1,3 +1,4 @@
+local pack = require "core.pack"
 local config = {}
 
 function config.galaxyline()
@@ -142,8 +143,10 @@ function config.nvim_tree()
 end
 
 function config.gitsigns()
-  if not packer_plugins['plenary.nvim'].loaded then
-    vim.cmd [[packadd plenary.nvim]]
+ -- if not packer_plugins['plenary.nvim'].loaded then
+  if not pack.is_plugin_loaded('plenary.nvim')   then
+    -- vim.cmd [[packadd plenary.nvim]]
+    require("lazy").load({ plugins = { "plenary.nvim" } })
   end
   require('gitsigns').setup {
     signs = {

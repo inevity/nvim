@@ -1,3 +1,4 @@
+local pack = require "core.pack" 
 local config = {}
 
 local function load_env_file()
@@ -29,8 +30,10 @@ end
 -- DB_CONNECTION_db_name=value.
 -- https://github.com/kristijanhusak/vim-dadbod-ui
 function config.vim_dadbod_ui()
-  if packer_plugins['vim-dadbod'] and not packer_plugins['vim-dadbod'].loaded then
-    vim.cmd [[packadd vim-dadbod]]
+  -- if packer_plugins['vim-dadbod'] and not packer_plugins['vim-dadbod'].loaded then
+  if not pack.is_plugin_loaded('vim-dadbod')   then
+    -- vim.cmd [[packadd vim-dadbod]]
+    require("lazy").load({ plugins = { "vim-dadbod" } })
   end
   vim.g.db_ui_show_help = 0
   vim.g.db_ui_win_position = 'left'
@@ -111,8 +114,10 @@ function config.nvim_dap()
 -- if place in the single depend, will load autom, but if reqruieres and opt=
 -- ture, will not load .
 --
-  if packer_plugins['one-small-step-for-vimkind'] and not packer_plugins['one-small-step-for-vimkind'].loaded then
-    vim.cmd [[packadd one-small-step-for-vimkind]]
+  -- if packer_plugins['one-small-step-for-vimkind'] and not packer_plugins['one-small-step-for-vimkind'].loaded then
+  if not pack.is_plugin_loaded('one-small-step-for-vimkind')   then
+    -- vim.cmd [[packadd one-small-step-for-vimkind]]
+    require("lazy").load({ plugins = { "one-small-step-for-vimkind" } })
   end
 
   local dap = require("dap")
@@ -323,8 +328,10 @@ end
 
 
 function config.tla()
-  if packer_plugins['plenary.nvim'] and not packer_plugins['plenary.nvim'].loaded then
-    vim.cmd [[packadd plenary.nvim]]
+  -- if packer_plugins['plenary.nvim'] and not packer_plugins['plenary.nvim'].loaded then
+  if not pack.is_plugin_loaded('plenary.nvim')   then
+    -- vim.cmd [[packadd plenary.nvim]]
+    require("lazy").load({ plugins = { "plenary.nvim" } })
   end
   -- first need plenary.nvim loaded 
 --  require("tla").setup()
@@ -371,11 +378,15 @@ end
 -- })
 
 function config.leetbuddy()
-  if packer_plugins['plenary.nvim'] and not packer_plugins['plenary.nvim'].loaded then
-    vim.cmd [[packadd plenary.nvim]]
+  -- if packer_plugins['plenary.nvim'] and not packer_plugins['plenary.nvim'].loaded then
+  if not pack.is_plugin_loaded('plenary.nvim')   then
+    -- vim.cmd [[packadd plenary.nvim]]
+    require("lazy").load({ plugins = { "plenary.nvim" } })
   end
-  if packer_plugins['telescope.nvim'] and not packer_plugins['telescope.nvim'].loaded then
-    vim.cmd [[packadd telescope.nvim]]
+  -- if packer_plugins['telescope.nvim'] and not packer_plugins['telescope.nvim'].loaded then
+  if not pack.is_plugin_loaded('telescope.nvim')   then
+    -- vim.cmd [[packadd telescope.nvim]]
+    require("lazy").load({ plugins = { "telescope.nvim" } })
   end
   require("leetbuddy").setup({
         domain = "com",  -- `cn` for chinese leetcode

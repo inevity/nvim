@@ -1,3 +1,5 @@
+
+local pack = require('core.pack')
 local function check_back_space()
     local col = vim.fn.col('.') - 1
     if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
@@ -47,16 +49,20 @@ _G.s_tab_complete = function()
 end
 
 _G.enhance_jk_move = function(key)
-  if packer_plugins['accelerated-jk'] and not packer_plugins['accelerated-jk'].loaded then
-    vim.cmd [[packadd accelerated-jk]]
+  -- if packer_plugins['accelerated-jk'] and not packer_plugins['accelerated-jk'].loaded then
+  if not pack.is_plugin_loaded('accelerated-jk')   then
+    -- vim.cmd [[packadd accelerated-jk]]
+    require("lazy").load({ plugins = { "accelerated-jk" } })
   end
   local map = key == 'j' and '<Plug>(accelerated_jk_gj)' or '<Plug>(accelerated_jk_gk)'
   return t(map)
 end
 
 _G.enhance_ft_move = function(key)
-  if not packer_plugins['vim-eft'].loaded then
-    vim.cmd [[packadd vim-eft]]
+  -- if not packer_plugins['vim-eft'].loaded then
+  if not pack.is_plugin_loaded('vim-eft')   then
+    -- vim.cmd [[packadd vim-eft]]
+    require("lazy").load({ plugins = { "vim-eft" } })
   end
   local map = {
     f = '<Plug>(eft-f)',
@@ -67,8 +73,10 @@ _G.enhance_ft_move = function(key)
 end
 
 _G.enhance_nice_block = function (key)
-  if not packer_plugins['vim-niceblock'].loaded then
-    vim.cmd [[packadd vim-niceblock]]
+  -- if not packer_plugins['vim-niceblock'].loaded then
+  if not pack.is_plugin_loaded('vim-niceblock')   then
+    -- vim.cmd [[packadd vim-niceblock]]
+    require("lazy").load({ plugins = { "vim-niceblock" } })
   end
   local map = {
     I = '<Plug>(niceblock-I)',
