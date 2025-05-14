@@ -190,8 +190,9 @@ function Lazy:load_plugins()
     local repos = require(m:sub(0, #m - 4))
     for repo, conf in pairs(repos) do
       -- Convert packer config to lazy.nvim config format
-      local plugin_spec = self:convert_plugin_format(repo, conf)
-      self.repos[#self.repos + 1] = plugin_spec
+      -- local plugin_spec = self:convert_plugin_format(repo, conf)
+      -- self.repos[#self.repos + 1] = plugin_spec
+      self.repos[#self.repos + 1] = conf
     end
   end
 
@@ -315,6 +316,7 @@ function plugins.load_compile()
       -- Enable caching of compiled plugin specs
       cache = {
         enabled = true,
+        path = vim.fn.stdpath("cache") .. "/lazy/cache",
       },
       reset_packpath = true, -- reset the package path to improve startup time
       rtp = {
