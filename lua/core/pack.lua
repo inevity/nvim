@@ -6,6 +6,10 @@ local packer_compiled = data_dir..'packer_compiled.vim'
 local compile_to_lua = data_dir..'lua/_compiled.lua'
 local packer = nil
 
+-- packer define 
+-- load_plugins from path
+-- load_packer and init 
+-- function Packer:init_ensure_plugins()
 local Packer = {}
 Packer.__index = Packer
 
@@ -35,6 +39,7 @@ function Packer:load_packer()
     api.nvim_command('packadd packer.nvim')
     packer = require('packer')
   end
+  -- packer.init() from 
   packer.init({
     compile_path = packer_compiled,
     max_jobs = 16,
@@ -72,6 +77,7 @@ function Packer:init_ensure_plugins()
   end
 end
 
+-- plugin module how create!!! key ?
 local plugins = setmetatable({}, {
   __index = function(_, key)
     if not packer then
@@ -119,6 +125,8 @@ function plugins.convert_compile_file()
 end
 
 function plugins.magic_compile()
+  -- where define
+  -- packer.compile = function(raw_args, move_plugins)
   plugins.compile()
   plugins.convert_compile_file()
 end
@@ -148,3 +156,7 @@ function plugins.load_compile()
 end
 
 return plugins
+-- plugin api: pack api and load_compile and auto_compile and magic_compile 
+-- function plugins.ensure_plugins()
+-- function plugins.convert_compile_file()
+-- how use 
