@@ -305,6 +305,7 @@ return {
 
   {
     "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
     dependencies = {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio",
@@ -339,11 +340,13 @@ return {
 
   {
     "ojroques/vim-oscyank",
+    event = "VeryLazy",
     config = conf.oscyank,
   },
 
   {
     "jszakmeister/vim-togglecursor",
+    event = "VeryLazy",
     config = function()
       vim.g.togglecursor_insert = "blinking_block"
     end,
@@ -355,8 +358,14 @@ return {
     config = conf.zen_mode,
   },
 
+  --  nvim --startuptime nvim2.log rdagent/oai/backend/base.py   
+  --  Lazy profile 
+  --  use event to filter the mess on
   {
     "susliko/tla.nvim",
+    -- event = "VeryLazy",
+    ft = "tla",
+    -- cmd = { "TlaInit", "TlaCheck", "TlaFormat" },
     config = conf.tla,
     dependencies = {
       { "nvim-lua/plenary.nvim", lazy = true },
@@ -365,11 +374,13 @@ return {
 
   {
     "jbyuki/nabla.nvim",
+    event = "VeryLazy",
     config = conf.nabla,
   },
 
   {
     "ibhagwan/fzf-lua",
+    event = "VeryLazy",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
@@ -377,6 +388,7 @@ return {
 
   {
     "Dhanus3133/LeetBuddy.nvim",
+    event = "VeryLazy",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
