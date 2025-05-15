@@ -57,6 +57,7 @@ function config.dashboard()
   }
 end
 
+--[[
 function config.nvim_tree()
 --   vim.g.nvim_tree_follow = 1
 --   vim.g.nvim_tree_hide_dotfiles = 1
@@ -140,6 +141,34 @@ function config.nvim_tree()
       vim.cmd("NvimTreeRefresh")
     end
   )
+end
+]]
+function config.nvim_tree()
+  require("nvim-tree").setup({
+    sort = {
+      sorter = "case_sensitive",
+    },
+    view = {
+      width = 30,
+    },
+    --renderer = {
+    --  group_empty = true,
+    --},
+
+    renderer = {
+      group_empty = true,
+      icons = {
+        show = {
+          file = true,
+          folder = true,
+          git = true,
+        },
+      },
+    },
+    filters = {
+      dotfiles = true,
+    },
+  })
 end
 
 function config.gitsigns()
