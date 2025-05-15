@@ -69,13 +69,21 @@ return {
     config = conf.dashboard,
   },
 
+ -- {
+ --   "NTBBloodbath/galaxyline.nvim",
+ --   branch = "main",
+ --   config = conf.galaxyline,
+ --   event = "VeryLazy",
+ --   dependencies = {
+ --     "kyazdani42/nvim-web-devicons",
+ --   },
+ -- },
   {
-    "NTBBloodbath/galaxyline.nvim",
-    branch = "main",
-    config = conf.galaxyline,
-    dependencies = {
-      "kyazdani42/nvim-web-devicons",
-    },
+    'nvim-lualine/lualine.nvim',
+    branch = "master",
+    event = "VeryLazy",
+    config = conf.lualine,
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
   },
 
   {
