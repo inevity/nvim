@@ -207,9 +207,64 @@ return {
     ft = { "go", "typescript", "javascript", "vim", "rust", "zig", "c", "cpp" },
   },
 
+--  For everyday line/block toggles: use Comment.nvim.
+
+--  For generating/updating docstrings: use Neogen
+
+  --{
+  --  "inevity/prodoc.nvim",
+  --  event = "BufReadPre",
+  --},
+
   {
-    "inevity/prodoc.nvim",
-    event = "BufReadPre",
+    "numToStr/Comment.nvim",
+    keys = { "gcc", "gc" },  -- lazy-load on comment toggles
+    config = function()
+      require("Comment").setup {
+        -- Add your custom mappings or options here
+        padding = true,
+        sticky = true,
+        toggler = {
+          line = "gcc",
+          block = "gbc",
+        },
+        opleader = {
+          line = "gc",
+          block = "gb",
+        },
+        -- ... see :help Comment.nvim for more
+      }
+    end,
+  },
+
+  {
+    "danymat/neogen",
+    cmd = "Neogen",
+    --snippet_engine = "luasnip",
+    -- map define 
+    keys = {
+      -- generate annotation for the current function/item
+      { "<leader>nf", function() require("neogen").generate() end, desc = "Neogen: Doc func" },
+      -- force a file-level docblock
+      { "<leader>nF", function() require("neogen").generate({ type = "file" }) end, desc = "Neogen: Doc file" },
+    },
+    dependencies = "nvim-treesitter/nvim-treesitter",  -- for syntax context
+    config = function()
+      require("neogen").setup {
+        enabled = true,
+        languages = {
+          lua = { template = { annotation_convention = "ldoc" } },
+          python = { template = { annotation_convention = "google_docstrings" } },
+          rust = {
+            template = {
+              -- use Rustdoc-style (`///` / `//!`) comments
+              annotation_convention = "rustdoc",
+            },
+          },
+          -- add more languages if you like
+        },
+      }
+    end,
   },
 
   {
