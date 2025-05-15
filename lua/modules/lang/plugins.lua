@@ -18,7 +18,8 @@ local conf = require('modules.lang.config')
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "BufRead",
+    -- event = "BufRead",
+    event = "VeryLazy",
     config = conf.nvim_treesitter,
     -- You can pin to a specific commit if necessary:
     -- commit = "668de0951a36ef17016074f1120b6aacbe6c4515",

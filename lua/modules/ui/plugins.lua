@@ -57,6 +57,7 @@ return {
     config = function()
       vim.cmd("colorscheme zephyr")
     end,
+    event = "VeryLazy",
     dependencies = {
       "folke/tokyonight.nvim",
     },
@@ -64,6 +65,7 @@ return {
 
   {
     "glepnir/dashboard-nvim",
+    event = "VeryLazy",
     config = conf.dashboard,
   },
 
@@ -87,6 +89,7 @@ return {
   {
     "akinsho/nvim-bufferline.lua",
     config = conf.nvim_bufferline,
+    event = "VeryLazy",
     dependencies = {
       "kyazdani42/nvim-web-devicons",
     },
@@ -95,6 +98,7 @@ return {
   {
     "kyazdani42/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeOpen" },
+    --event = "VeryLazy",
     config = conf.nvim_tree,
     dependencies = {
       "kyazdani42/nvim-web-devicons",
@@ -103,7 +107,8 @@ return {
 
   {
     "lewis6991/gitsigns.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    -- event = { "BufReadPre", "BufNewFile" },
+    event = "VeryLazy",
     config = conf.gitsigns,
     dependencies = {
       { "nvim-lua/plenary.nvim", optional = true },
