@@ -151,8 +151,9 @@ return {
   },
 
   {
-    "tami5/lspsaga.nvim",
-    cmd = "Lspsaga",
+    "nvimdev/lspsaga.nvim",
+    -- cmd = "Lspsaga",
+    ft = {'c','cpp', 'lua', 'rust', 'go'},
     -- branch = "main", -- 如果你需要特定分支，可以加回来
   },
 
