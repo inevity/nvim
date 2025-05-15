@@ -88,7 +88,8 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 
 
 function _G.reload_lsp()
-  vim.lsp.stop_client(vim.lsp.get_active_clients())
+  -- vim.lsp.stop_client(vim.lsp.get_active_clients())
+  vim.lsp.stop_client(vim.lsp.get_clients())
   vim.cmd [[edit]]
 end
 
@@ -128,7 +129,15 @@ local enhance_attach = function(client,bufnr)
   if client.server_capabilities.document_formatting then
     format.lsp_before_save()
   end
-  api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  -- api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+  -- api.nvim_set_option_value("omnifunc","lua.vim.lsp.omnifunc")
+  api.nvim_set_option_value(
+  "omnifunc",
+  "v:lua.vim.lsp.omnifunc",
+  { scope = "local", buf = bufnr }
+)
+
+
 end
 
 
